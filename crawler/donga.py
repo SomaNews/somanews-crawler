@@ -69,7 +69,7 @@ class ParserDonga:
             titleItem = item.find('.title a')
             url = titleItem.attr('href')
             title = re.sub(r'\n *', ' ', titleItem.text())
-            newsID = re.match(r'.+/((\d+)/(\d+))/1', url).group(1)
+            newsID = re.match(r'.+/(\d+/\d+/\d+)', url).group(1)
             newslist.append({
                 'title': title,
                 'url': url,
