@@ -9,7 +9,7 @@ class TestChosunCrawler(unittest.TestCase):
         rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
         news = chosun.parseNewsHtml(rawhtml)
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
-        self.assertEqual(news['author'], '박건형')
+        self.assertEqual(news['author'], '박건형 기자')
         # link 생략 : local file을 이용한 테스트라 link가 의미가 없다.
         self.assertEqual(news['provider'], 'chosun')
         self.assertEqual(news['category'], '정부ㆍ지자체')
@@ -31,7 +31,7 @@ class TestChosunCrawler(unittest.TestCase):
 
         news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
-        self.assertEqual(news['author'], '박건형')
+        self.assertEqual(news['author'], '박건형 기자')
         self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['provider'], 'chosun')
 
