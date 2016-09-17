@@ -4,55 +4,37 @@ import re
 from pyquery import PyQuery as pq
 
 
-chosun_url_regex = re.compile(
-    r'http://news.chosun.com/site/data/html_dir/\d+/\d+/\d+/(\d+).html'
-)
-
-chosun_desc_regex = re.compile(
-    r'''<table border=0 cellspacing=3 cellpadding=0 width=100%><tr><td><img src="([^"]+)" border=0></td></tr></table>((.|[\r\n])+)'''
-)
-
-
-def chosun_readrss(rssdata):
-    rssfeeds = fp.parse(rssdata)
-    feeds = []
-
-    for entry in rssfeeds.entries:
-        # newsID
-        url = entry.link
-        url_matched = chosun_url_regex.match(url)
-        newsID = url_matched.group(1)
-
-        # mainImageURL
-        desc = entry.description.strip()
-        desc_matched = chosun_desc_regex.match(desc)
-        if not desc_matched:  # no thumbnail
-            mainImageURL = ''
-        else:
-            mainImageURL = desc_matched.group(1)
-
-        # cTime
-        cTime = time.mktime(entry.published_parsed) + 9 * 3600
-
-        feeds.append({
-            'source': 'chosun',
-            'newsID': newsID,
-
-            'title': entry.title,
-            'cTime': cTime,
-            'mainImage': mainImageURL,
-            'link': url,
-        })
-
-    return feeds
-
-
-def chosun_getcontent(newshtml):
+def parseNewsHtml(newshtml):
     d = pq(newshtml)
-    return d('div.par').text().strip()
+
+    # description
+    description = d('.news_subtitle').html().replace('<br/>', '\n').strip()
+
+    # publishedAt
+    publishedAtString = d('.news_date').text()
+    timeStr = re.match(
+        r'입력 : (\d+.\d+.\d+ \d+:\d+)',
+        publishedAtString
+    ).group(1)
+    publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M"))
+
+    # author
+    authorStr = d('.news_title_author').text()
+    author = re.match(r'(.+) 기자', authorStr).group(1)
+
+    return {
+        'title': d('.news_title_text h1').text(),
+        'author': author,
+        'provider': 'chosun',
+        'category': d('.news_title_cat a').eq(0).text(),
+        'description': description,
+        'publishedAt': publishedAt,
+        'content': d('.par').text()
+    }
 
 
-def chosun_parse_newslist(newshtml):
+
+def parseNewsListHtml(newshtml):
     d = pq(newshtml)
     newslist = []
     for item in d('dl.list_item').items():
