@@ -49,15 +49,6 @@ def parseNewsListHtml(newshtml):
 
 
 def crawlSince(since):
-    """뉴스를 특정 시간대로부터 전부 크롤링을 해옵니다.
-
-    Arguments:
-        since (int) -- since 이후의 뉴스만 크롤링합니다. epoch 기준
-
-    Yields:
-        list -- 뉴스 리스트. 시간순으로 정렬되며, 최신이 [0]
-    """
-
     def newsEntryGenerator():
         page = 1
         while True:
