@@ -10,7 +10,8 @@ class TestChosunCrawler(unittest.TestCase):
         rawhtml = open('testdata/chosun/chosun_article.html', 'r', encoding='euc-kr').read()
         mock_urlReader.return_value = rawhtml
 
-        news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
+        parser = chosun.ParserChosun()
+        news = parser.parseNews('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
         self.assertEqual(news['author'], '박건형 기자')
         self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
@@ -22,14 +23,14 @@ class TestChosunCrawler(unittest.TestCase):
 한국 땅·공해선 포집 어렵고 장비 성능 떨어진다는 지적도''')
         self.assertEqual(news['publishedAt'], 1474106340)  # 2016.09.17 18:59
 
-        # 컨텐츠
-        content = news['content']
-        self.assert_(content.startswith('정부가 지난 9일 북한이 실시한 5차 '))
-        self.assert_(content.endswith('시스템을 개편해야 한다”고 말했다.'))
 
-    def test_newslist_reader(self):
+    @patch('crawler.utils.readURL')
+    def test_newslist_reader(self, mock_urlReader):
         rawhtml = open('testdata/chosun/chosun_article_list.html', 'r', encoding='euc-kr').read()
-        newslist = chosun.parseNewsListHtml(rawhtml)
+        mock_urlReader.return_value = rawhtml
+
+        parser = chosun.ParserChosun()
+        newslist = parser.parseNewsList(1)
         self.assertEqual(len(newslist), 10)
 
         self.assertEqual(newslist[0]['title'], "[카드뉴스] 자녀가 代이은 '키다리 아저씨'의 쌀가마 선행")

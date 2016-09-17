@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch
-from crawler import chosun
-from nose.plugins.attrib import attr
+from crawler import chosun, crawler
 
 class TestChosunCrawler(unittest.TestCase):
     @patch('crawler.utils.readURL')
@@ -15,7 +14,8 @@ class TestChosunCrawler(unittest.TestCase):
         }
         mock_readURL.side_effect = lambda url, _: open(urlmap[url], 'r', encoding='euc-kr').read()
 
-        articles = chosun.crawlSince(1473858000)
+        parser = chosun.ParserChosun()
+        articles = crawler.crawlSince(parser, 1473858000)
         self.assertEqual(len(articles), 3)
         self.assertEqual(articles[1]['publishedAt'], 1473915600)  # 2016.09.15 14:00
         self.assertEqual(articles[2]['publishedAt'], 1473858000)  # 2016.09.14 22:00
