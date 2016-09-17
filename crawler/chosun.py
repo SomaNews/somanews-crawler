@@ -1,21 +1,8 @@
 import time
 import re
-import urllib
-from urllib.request import urlopen
 from pyquery import PyQuery as pq
 import logging
-
-def readURL(url, encoding):
-    """URL에 따라 파일을 읽는다.
-
-    Arguments:
-        url (str) -- 읽어올 URL
-        encoding (str) -- 해당 파일이 인코딩된 형식
-
-    Returns:
-        str -- 읽은 내용
-    """
-    return urlopen(url).read().decode(encoding)
+from crawler import utils as ut
 
 
 def parseNewsHtml(newshtml):
@@ -45,7 +32,7 @@ def parseNewsHtml(newshtml):
 
 
 def parseNewsFromURL(url):
-    rawhtml = readURL(url, 'euc-kr')
+    rawhtml = ut.readURL(url, 'euc-kr')
     news = parseNewsHtml(rawhtml)
     news['link'] = url
     return news
@@ -80,26 +67,20 @@ def crawlSince(since):
         page = 1
         while True:
             pageStr = "http://news.chosun.com/svc/list_in/list.html?pn=%d" % page
-            pageHTML = readURL(pageStr, 'euc-kr')
+            pageHTML = ut.readURL(pageStr, 'euc-kr')
             for entry in parseNewsListHtml(pageHTML):
                 yield entry
             page += 1
 
     newsList = []
-    try:
-        for newsEntry in newsEntryGenerator():
-            try:
-                news = parseNewsFromURL(newsEntry['url'])
-                logging.info('Crawling news "%s"' % news['title'])
-                if news['publishedAt'] < since:
-                    break
-                newsList.append(news)
-            except:
-                # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
-                logging.exception('Error while crawling news "%s"', news['title'])
-    except:
-        # 뭔가 오류가 났으니까 나중에 디버깅을 해야지
-        # 일단 여기까지 크롤링한 newsList는 리턴을 해주자.
-        logging.exception('Error in newsEntryGenerator')
-
+    for newsEntry in newsEntryGenerator():
+        try:
+            news = parseNewsFromURL(newsEntry['url'])
+            logging.info('Crawling news "%s"' % news['title'])
+            if news['publishedAt'] < since:
+                break
+            newsList.append(news)
+        except:
+            # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
+            logging.exception('Error while crawling news "%s"', news['title'])
     return newsList

@@ -4,7 +4,7 @@ from crawler import chosun
 from nose.plugins.attrib import attr
 
 class TestChosunCrawler(unittest.TestCase):
-    @patch('crawler.chosun.readURL')
+    @patch('crawler.utils.readURL')
     def test_crawl_since(self, mock_readURL):
         urlmap = {
             'http://news.chosun.com/svc/list_in/list.html?pn=1': 'testdata/chosun/chosun_article_list.html',

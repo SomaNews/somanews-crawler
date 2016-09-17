@@ -24,7 +24,7 @@ class TestChosunCrawler(unittest.TestCase):
         self.assert_(content.startswith('정부가 지난 9일 북한이 실시한 5차 '))
         self.assert_(content.endswith('시스템을 개편해야 한다”고 말했다.'))
 
-    @patch('crawler.chosun.readURL')
+    @patch('crawler.utils.readURL')
     def test_parsenewsurl(self, mock_urlReader):
         rawhtml = open('testdata/chosun/chosun_article.html', 'r', encoding='euc-kr').read()
         mock_urlReader.return_value = rawhtml
