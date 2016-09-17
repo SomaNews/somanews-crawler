@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* NanumBarunGothic css */
+@font-face {
+ font-family: 'NanumBarunGothic';
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWeb.eot);
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWeb.eot?#iefix) format('embedded-opentype'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWeb.woff) format('woff'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWeb.ttf) format('truetype');
+}
+@font-face {
+ font-family: 'NanumBarunGothicBold';
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebBold.eot);
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebBold.eot?#iefix) format('embedded-opentype'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebBold.woff) format('woff'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebBold.ttf) format('truetype');
+}
+@font-face {
+ font-family: 'NanumBareunGothicLight';
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebLight.eot);
+ src: url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebLight.eot?#iefix) format('embedded-opentype'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebLight.woff) format('woff'),
+      url(//www.yonhapnews.co.kr/css/font/NanumBarunGothic/NanumBarunGothicWebLight.ttf) format('truetype');
+}

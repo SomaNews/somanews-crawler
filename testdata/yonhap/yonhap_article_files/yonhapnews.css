@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+#livereContainer {
+	width: 522px;
+}
+
+#livere_platform {
+	min-width: 520px;
+}
+
+#livere_platform_wrapper .livere_pltfrm_top .livere_sns_icons_wrapper a.yonhapnews {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/icon.gif") no-repeat 0px 0px;
+}
+
+#livere_platform_wrapper .livere_pltfrm_top .livere_on a.yonhapnews {
+	background-position: 0px -28px;
+}
+
+#livere_platform_wrapper .livere_pltfrm_top .NotPost a.yonhapnews {
+	background-position: 0px -28px;
+}
+
+#livere_platform_wrapper .livere_pltfrm_top .livere_sns_icons_wrapper div.livere_accountLayer dl dd span.yonhapnews {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/icon.gif") no-repeat -85px 0px;	
+}
+
+#livere_platform_wrapper #livere_pltform_middle span.livere_primarySNS strong.yonhapnews {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/icon.gif") no-repeat -85px 0px;	
+}
+
+#livere_platform_wrapper #livere_pltform_middle fieldset div.livere_thumbnail {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/icon.gif") no-repeat -37px -37px;	
+}
+
+#livere_platform_wrapper #livere_pltform_middle fieldset div.livere_contentInput {
+	left: 15%;
+	width: 68%;
+}
+#livere_platform_wrapper #livere_pltform_middle fieldset div.livere_contentInput textarea {
+height: 60px\9;
+}
+
+#livere_reply_list_wrapper div.livere_articles_wrapper div.livere_articles_body_wrapper dl.livere_article_content dd.livere_article_writed_info span.livere_snsIcon strong.yonhapnews {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/icon.gif") no-repeat -85px 0px;	
+}
+
+#livere_reply_list_wrapper div.livere_articles_wrapper div.livere_articles_body_wrapper div.livere_re_reply form.livere_re_reply_form textarea.livere_txt {
+	width: 77%;
+}
+#livere_namecheck {
+	margin-top: -29px;
+	margin-right: 205px;
+}
+
+/*livere 8*/
+
+/*ºñ ·Î±×ÀÎ È¸¿ø¿¬µ¿¹öÆ°*/
+#livereContainer #liverePlugIn #livereWriteForm #livereWriteFormTop #livereSNSLoginIconContainer #livereNotLogged #livere_yonhapnews button .livereSNSImage_B{
+
+	background: url("//101.livere.co.kr/consumers/yonhapnews/off.png") 3px 3px no-repeat;
+}
+
+/*È¸¿ø¿¬µ¿ ·Î±×ÀÎ ÈÄ Å×µÎ¸® ¹× ¾ÆÀÌÄÜ ¹× ¹è°æ*/
+#livereContainer #liverePlugIn #livereWriteForm #livereWriteFormTop #livereSNSLoginIconContainer .livere_p_yonhapnews {
+	border: 2px solid #002c6b;
+}
+#livereContainer #liverePlugIn #livereWriteForm #livereWriteFormTop #livereSNSLoginIconContainer #livereLogged #livere_yonhapnews button {
+	background: #003d93;
+	background-image: none;
+	filter: none;
+}
+
+#livereContainer #liverePlugIn #livereWriteForm #livereWriteFormTop #livereSNSLoginIconContainer #livereLogged #livere_yonhapnews button .livereSNSImage_B {
+	background: url("//101.livere.co.kr/consumers/yonhapnews/on.png") no-repeat 3px 3px;
+}
+ 
+/*3¹ø °èÁ¤¿µ¿ª »ö»óº¯°æ*/
+#livereContainer #liverePlugIn #livereWriteForm #livereWriteFormMiddle #livereWriteFormMiddleRightContainer #livereWriteFormMiddleRight .livere_pWriter_yonhapnews {
+	background: #003366;
+}
+
+/*´ñ±Û ÇÁ·ÎÇÊ À§ ÀÛÀº¾ÆÀÌÄÜ 18X18*/
+#livereContainer #liverePlugIn #livereReplyWrapper .livereParentReplyWrapper button .livereFavicon_L_yonhapnews {
+background: url("//101.livere.co.kr/consumers/yonhapnews/18x18.png") no-repeat 0px 0px;
+}
+
+/*´ñ´ñ±Û ÇÁ·ÎÇÊ À§ ÀÛÀº¾ÆÀÌÄÜ 15X15*/
+#livereContainer #liverePlugIn #livereReplyWrapper .livereParentReplyWrapper .livereReplyBodyContainer .livereReplyBody .livereChildReplyWrapper .livereChildReply button .livereFavicon_S_yonhapnews {
+background: url("//101.livere.co.kr/consumers/yonhapnews/15x15.png") no-repeat 0px 0px;
+}
+
+#liverePrimaryThumb.notLoggedThumb {
+background: url("//101.livere.co.kr/consumers/yonhapnews/profile.png") no-repeat 3px 3px #fff;
+}
+
+#liverePlugIn .livere_contentText { height: 35px; }
+
+#liverePlugIn .livereBtn2:hover {
+	background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0.01, rgb(77,141,215)), color-stop(1, rgb(125,179,241)) );
+	background-image: -moz-linear-gradient( center top, rgb(77,141,215) , rgb(125,179,241) );
+	Filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#4d8dd7 , endColorstr=#7db3f1);
+}
+
+#liverePlugIn .livereBtn2 {
+	border: 1px solid #437ec2;
+	background-color: #437ec2;
+	background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0.01, rgb(125,179,241)), color-stop(1, rgb(77,141,215)) );
+	background-image: -moz-linear-gradient( center top, rgb(125,179,241), rgb(77,141,215) );
+	Filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#7db3f1, endColorstr=#4d8dd7);
+}
+
+#liverePlugIn .livereFont4 {
+	color : #0066cc;
+}
+
+#liverePlugIn .livereFont4 {
+	color : #0066cc;
+}
