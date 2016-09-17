@@ -56,3 +56,22 @@ def parseNewsFromURL(url):
         'publishedAt': publishedAt,
     }
 
+
+def parseNewsListHtml(newshtml):
+    d = pq(newshtml)
+    newslist = []
+
+    contents = d('div#contents')
+
+    for item in contents.find('.articleList').items():
+        titleItem = item.find('.title a')
+        url = titleItem.attr('href')
+        title = re.sub(r'\n *', ' ', titleItem.text())
+        newsID = re.match(r'.+/((\d+)/(\d+))/1', url).group(1)
+        newslist.append({
+            'title': title,
+            'url': url,
+            'providerNewsID': newsID,
+        })
+    return newslist
+

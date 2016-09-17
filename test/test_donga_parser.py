@@ -17,3 +17,16 @@ class TestDongaParser(unittest.TestCase):
         self.assertEqual(news['category'], '뉴스>스포츠>씨름')
         self.assertEqual(news['description'], '[커버스토리/ 씨름, 부활의 샅바]')
         self.assertEqual(news['publishedAt'], 1474135200)  # 2016-09-18 03:00:00
+
+
+    def test_parsenewslist(self):
+        rawhtml = open('testdata/donga/donga_article_list.htm', 'r', encoding='utf-8').read()
+        newslist = donga.parseNewsListHtml(rawhtml)
+        self.assertEqual(len(newslist), 16)
+
+        self.assertEqual(newslist[0]['title'], "제주 中관광객, 이번엔 성당서 묻지마 흉기난동")
+        self.assertEqual(newslist[0]['url'], "http://news.donga.com/List/3/all/20160918/80317130/1")
+        self.assertEqual(newslist[0]['providerNewsID'], "20160918/80317130")
+
+        self.assertEqual(newslist[-1]['title'], "‘사드 반대’ 출구전략 찾는 야권")
+        self.assertEqual(newslist[-1]['url'], "http://news.donga.com/List/3/all/20160918/80317006/1")
