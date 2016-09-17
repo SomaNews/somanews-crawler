@@ -6,7 +6,7 @@ from nose.plugins.attrib import attr
 
 class TestChosunCrawler(unittest.TestCase):
     def test_parsenewshtml(self):
-        rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
+        rawhtml = open('testdata/chosun/chosun_article.html', 'r', encoding='euc-kr').read()
         news = chosun.parseNewsHtml(rawhtml)
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
         self.assertEqual(news['author'], '박건형 기자')
@@ -26,7 +26,7 @@ class TestChosunCrawler(unittest.TestCase):
 
     @patch('crawler.chosun.readURL')
     def test_parsenewsurl(self, mock_urlReader):
-        rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
+        rawhtml = open('testdata/chosun/chosun_article.html', 'r', encoding='euc-kr').read()
         mock_urlReader.return_value = rawhtml
 
         news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
@@ -44,7 +44,7 @@ class TestChosunCrawler(unittest.TestCase):
         self.assertEqual(news['provider'], 'chosun')
 
     def test_newslist_reader(self):
-        rawhtml = open('testdata/chosun_article_list.html', 'r', encoding='euc-kr').read()
+        rawhtml = open('testdata/chosun/chosun_article_list.html', 'r', encoding='euc-kr').read()
         newslist = chosun.parseNewsListHtml(rawhtml)
         self.assertEqual(len(newslist), 10)
 
