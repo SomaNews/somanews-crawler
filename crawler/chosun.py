@@ -4,6 +4,10 @@ from urllib.request import urlopen
 from pyquery import PyQuery as pq
 
 
+def readURL(url, encoding):
+    return urlopen(url).read().decode(encoding)
+
+
 def parseNewsHtml(newshtml):
     d = pq(newshtml)
 
@@ -31,7 +35,7 @@ def parseNewsHtml(newshtml):
 
 
 def parseNewsFromURL(url):
-    rawhtml = urlopen(url).read().decode('euc-kr')
+    rawhtml = readURL(url, 'euc-kr')
     news = parseNewsHtml(rawhtml)
     news['link'] = url
     return news
