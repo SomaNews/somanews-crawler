@@ -1,0 +1,10 @@
+document.write("<div class='aside_AD01_1'>");
+adURL = "http://ar.donga.com/RealMedia/ads/adstream_jx.ads/2012.donga.com/news@x43";
+adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+document.write("<SCR" + "IPT LANG" + "UAGE='JAVAS" + "CRIPT1.1' SRC='" + adURL + "'></SCR" + "IPT>");
+document.write("</div>");
+document.write("<div class='aside_AD01_2'>");
+adURL = "http://ar.donga.com/RealMedia/ads/adstream_jx.ads/2016.donga.com/news@x30";
+adURL = adURL.replace(/@/, "/1" + ((String)(Math.random())).substring(2, 11) + "@");
+document.write("<SCR" + "IPT LANG" + "UAGE='JAVAS" + "CRIPT1.1' SRC='" + adURL + "'></SCR" + "IPT>");
+document.write("</div>");

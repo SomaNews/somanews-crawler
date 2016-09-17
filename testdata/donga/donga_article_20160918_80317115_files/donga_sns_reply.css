@@ -1,0 +1,270 @@
+@charset "utf-8";
+
+/* reset */
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button,strong,span,em,iframe,img, textarea,input {margin:0;padding:0}
+dl,ul,ol{list-style:none;}
+fieldset, img {border:none;}
+input,textarea,select{font-size:12px;color:#333;vertical-align:top;}
+legend, caption{width:0; height:0; font:0/0 Sans-serif; visibility:hidden; z-index:-1;}
+em, address {font-style:normal;}
+a {cursor:pointer;}
+img {max-height:16384px\9;max-height:16384px\0IE8+9;}
+
+a:link, a:visited {text-decoration:none;color:#333;}
+a:hover, a:active {text-decoration:none;color:#f25632 !important;}
+
+#spinTopLayer {width:100%;margin-bottom:40px;word-break:break-all;word-wrap:break-word;font-size:12px;line-height:140%;color:#333;font-family:'돋움',dotum,Helvetica,sans-serif;text-align:left;}
+#spinTopLayer * {margin:0;padding:0;}
+#spinTopLayer img {border:0 none;}
+#spinTopLayer ul, #spinTopLayer ol, #spinTopLayer dl {list-style:none;}
+#spinTopLayer input, #spinTopLayer textarea, #spinTopLayer select {font-size:12px;color:#333;vertical-align:top;}
+#spinTopLayer em {font-style:normal;}
+#spinTopLayer h1 {font-size:14px;font-weight:bold;color:#333;letter-spacing:-1px;margin-bottom:10px;}
+
+/* 댓글 > 베스트 */
+#spinTopLayer .spinTopLayerBest {margin-bottom:30px;}
+#spinTopLayer .spinTopLayerBest .commentList {}
+#spinTopLayer .spinTopLayerBest .commentList li {position:relative;overflow:hidden;padding:0 0 0 48px;z-index:100;border:1px solid #aeaeae;border-radius:5px;box-shadow:0 2px 0 #ebebeb;}
+#spinTopLayer .spinTopLayerBest .commentList li .bestTitle {position:absolute;left:0;top:0;width:47px;height:100%;border-right:1px solid #d9d9d9;border-radius:4px 0 0 4px;background:#fff8f6;text-align:center;font-weight:bold;color:#df5031;text-decoration:underline;vertical-align:middle;}
+#spinTopLayer .spinTopLayerBest .commentList li .bestTitle span {display:inline-block;width:0;height:100%;vertical-align:middle;}
+#spinTopLayer .spinTopLayerBest .commentList li .profile {position:absolute;width:50px;height:50px;left:63px;top:15px;border-radius:5px;z-index:101;}
+#spinTopLayer .spinTopLayerBest .commentList li .profile img {width:50px;height:50px;border-radius:4px;}
+#spinTopLayer .spinTopLayerBest .commentList li .module {position:relative;width:100%;padding:15px 0 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname {display:inline;float:left;color:#5272af;font-weight:bold;padding-left:32px;margin-left:65px;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname.donga {color:#de501c;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_donga_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname.facebook {color:#5272af;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_facebook_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname.twitter {color:#2cafe1;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_twitter_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname.twitter a {color:#2cafe1 !important;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .nickname.me2day {color:#745abd;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_me2day_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .createdate {float:left;font-size:11px;color:#999;margin-left:10px;padding-left:10px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/line_greatedate.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .comment {clear:both;min-height:28px;padding:10px 13px 12px 78px;color:#222;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .comment em {color:#999;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation {position:relative;width:100%;height:32px;line-height:32px;border-top:1px solid #d9d9d9;border-radius:0 0 4px 4px;overflow:hidden;color:#666}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .notify {float:left;padding-left:36px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bul_reply.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .notify a {color:#666;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .reply {float:left;padding-left:5px;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .action {float:right;margin-top:7px;height:16px;line-height:16px;font-size:11px;color:#666;font-weight:normal;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .action .agree {float:left;overflow:hidden;height:16px;line-height:16px;margin-right:13px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_agree.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .action .disagree {float:left;overflow:hidden;height:16px;line-height:16px;margin-right:13px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_disagree.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .action a {display:inline-block;width:25px;height:16px;line-height:999px;overflow:hidden;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .operation .action em {display:inline-block;height:15px;line-height:15px;padding:1px 7px 0 7px;vertical-align:top;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_agree.gif) no-repeat right 0;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .delete {position:absolute;right:13px;top:10px;display:block;z-index:9999;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .delete a {display:block;width:11px;height:11px;text-indent:-9999px;overflow:hidden;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_del.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList li .module .icon_a {position:absolute;left:-5px;top:8px;display:block;width:5px;height:7px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_bul_a.gif) no-repeat 0 0;}
+
+/* 댓글 > 베스트 > 댓글에 댓글 쓰기 */
+#spinTopLayer .spinTopLayerBest .commentList .etc {display:none;padding:13px 0 5px 0;background:#f6f7f8;border-radius:0 0 4px 4px;border-top:1px solid #ebebeb;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyWriteBox {margin:0 13px 0;padding-bottom:5px;border:1px solid #bbbbbb;border-radius:5px;background:#fafafa;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin {float:left;margin:6px 0 6px 6px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul {float:left;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li {float:left;margin:0 4px 0 0;padding:0;border:0 none;box-shadow:none;border-radius:0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li .on{}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li div a {display:block;width:25px;height:24px;text-indent:-9999px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_login.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_donga a {background-position:0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_facebook a {background-position:-29px 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_twitter a {width:24px;background-position:-58px 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_me2day a {background-position:-86px 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_donga.on a {background-position:0 -25px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_facebook.on a {background-position:-29px -25px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_twitter.on a {width:24px;background-position:-58px -25px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_me2day.on a {background-position:-86px -25px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogTxt {float:left;padding-left:2px;margin:6px 0 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogTxt img {display:none;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogTxt.on img {display:inline}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogoutBtn {float:left;margin:6px 0 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyLogoutBtn a {display:block;width:65px;height:24px;text-indent:-9999px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_logout.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyWrite {position:relative;clear:both;padding:0 105px 15px 10px;border-radius:4px;background:#fff;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyWrite textarea {width:100%;resize:none;border:0 none;height:50px;margin:10px 0 0 0;padding:0 5px 10px 5px;border-radius:5px;color:#aaa;line-height:16px;overflow:auto;ime-mode:active;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyWrite input {cursor:pointer;position:absolute;right:10px;top:10px;display:inline-block;color:transparent;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_reply_submit_2.gif) 0 0;width:77px;height:62px;padding:0;border:0 none;text-indent:-9999px;overflow:hidden;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyWrite .contextsize {position:absolute;left:10px;bottom:7px;color:#aaa;}
+
+/* 댓글 > 베스트 > 댓글에 댓글 리스트 */
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList {}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList {padding:0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li {margin:0;padding:10px 0 7px;margin:0 13px;border:0 none;border-top:1px solid #ebebeb;border-radius:0;box-shadow:none;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .profile {display:none;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module {position:relative;float:left;width:100%;padding:0;border:0 none;border-radius:0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li:first-child {border-top:0 none;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname {float:left;color:#333;margin:0;font-weight:bold;padding-left:19px;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.donga {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_donga_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.facebook {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_facebook_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.twitter {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_twitter_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.me2day {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_me2day_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .createdate {float:left;font-size:11px;color:#999999;margin-left:10px;padding-left:10px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/line_greatedate.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .action {position:absolute;right:1px;top:1px;width:11px;height:11px;display:block;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .action .delete {position:relative;top:0;right:0;display:block;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .action .delete a {display:block;width:11px;height:11px;text-indent:-9999px;overflow:hidden;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_del.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .comment {clear:both;min-height:0;padding:5px 0 0 0;color:#222;}
+#spinTopLayer .spinTopLayerBest .commentList .etc .spinTopLayerReplyList .commentList li .module .comment em {color:#999;}
+
+/* 댓글 > 글쓰기 */
+#spinTopLayer .spinTopLayerWriteBox {position:relative;padding:15px;margin-bottom:12px;box-shadow:0 1px 0 #eeeeee;border:1px solid #ccc;border-radius:5px;background:#f8f8f8;}
+
+/* 댓글 > 글쓰기 > 로그인 */
+#spinTopLayer .spinTopLayerLogin {float:left;margin-bottom:10px;}
+#spinTopLayer .spinTopLayerLogin ul {float:left;}
+#spinTopLayer .spinTopLayerLogin ul li {float:left;margin:0 4px 0 0;}
+#spinTopLayer .spinTopLayerLogin ul li .on{}
+#spinTopLayer .spinTopLayerLogin ul li div a {display:block;width:25px;height:24px;overflow:hidden;text-indent:-9999px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_login.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_donga a {background-position:0 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_facebook a {background-position:-29px 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_twitter a {width:24px;background-position:-58px 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_me2day a {background-position:-86px 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_kakao a {background-position:-86px 0;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_donga.on a {background-position:0 -25px;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_facebook.on a {background-position:-29px -25px;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_twitter.on a {width:24px;background-position:-58px -25px;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_me2day.on a {background-position:-86px -25px;}
+#spinTopLayer .spinTopLayerLogin ul li #spinTop_sns_kakao.on a {background-position:-86px -25px;}
+
+/* 댓글 > 글쓰기 > 문구 */
+#spinTopLayer .spinTopLayerLogTxt {float:left;padding-left:2px;}
+#spinTopLayer .spinTopLayerLogTxt img {display:none;}
+#spinTopLayer .spinTopLayerLogTxt.on img {display:inline;}
+
+/* 댓글 > 글쓰기 > 로그아웃 버튼 */
+#spinTopLayer .spinTopLayerLogoutBtn {float:left;}
+#spinTopLayer .spinTopLayerLogoutBtn a {float:left;display:block;overflow:hidden;width:auto;font-size:11px;font-weight:bold;color:#555;border:1px solid #bbb;border-radius:3px;height:22px;line-height:22px;text-indent:0;padding:0 10px;letter-spacing:-1px;background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYmViZWIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #ffffff 0%, #ebebeb 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ebebeb)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#ebebeb 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#ebebeb 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#ebebeb 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#ebebeb 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb',GradientType=0 ); /* IE6-8 */
+}
+#spinTopLayer .spinTopLayerLogoutBtn div {display:none;position:absolute;right:16px;top:15px;}
+#spinTopLayer #spinTopLayerLogoutBtn.spinTopLayerLogoutBtn div {display:block;}
+#spinTopLayer .spinTopLayerLogoutBtn div a {display:block;overflow:hidden;width:auto;font-size:11px;font-weight:bold;color:#555;border:1px solid #bbb;border-radius:3px;height:22px;line-height:22px;text-indent:0;padding:0 10px;letter-spacing:-1px;}
+
+#spinTopLayer .spinTopLayerAct {float:left;height:24px;line-height:24px;padding-left:3px;}
+#spinTopLayer .spinTopLayerAct .spinTopLayerActLogIn {}
+#spinTopLayer .spinTopLayerAct .spinTopLayerActLogIn.on {}
+#spinTopLayer .spinTopLayerAct .spinTopLayerActLogOut {}
+#spinTopLayer .spinTopLayerAct .spinTopLayerActMyList {display:none;}
+
+/* 댓글 > 글쓰기 > sns 내보내기 체크 */
+#spinTopLayer .spinTopLayerSnsCheck {float:right;padding:5px 0 0 0;}
+#spinTopLayer .spinTopLayerSnsCheck ul li {display:none;float:left;margin:0 4px 0 0;}
+#spinTopLayer .spinTopLayerSnsCheck ul li input {vertical-align:middle;position:relative;top:-1px;margin-right:2px;}
+#spinTopLayer .spinTopLayerSnsCheck ul li label {font-size:11px;color:#888;letter-spacing:-1px;}
+#spinTopLayer .spinTopLayerSnsCheck ul li.on{display:block;}
+
+/* 댓글 > 글쓰기 > 댓글입력 */
+#spinTopLayer .spinTopLayerWrite {position:relative;clear:both;padding-right:160px;}
+#spinTopLayer .spinTopLayerWrite textarea {width:100%;resize:none;border:1px solid #bbb;font-family:"돋움", Dotum;height:69px;margin:0;padding:10px 65px 10px 10px;border-radius:5px;color:#aaa;line-height:16px;overflow:auto;ime-mode:active;}
+#spinTopLayer .spinTopLayerWrite .spinTopLayerWriteButton{cursor:pointer;position:absolute;right:0;top:0;display:inline-block;color:transparent;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_reply_submit.gif) 0 0;width:77px;height:91px;padding:0;border:0 none;text-indent:-9999px;line-height:999px;overflow:hidden;}
+#spinTopLayer .spinTopLayerWrite .contextsize {position:absolute;right:95px;top:8px;color:#aaa;}
+#spinTopLayer .spinTopLayerWrite .contextsize strong {color:#888;}
+
+/* 댓글 > 리스트 탭메뉴 */
+#spinTopLayer .spinTopLayerList .spinTopLayerListTab {height:30px;border:1px solid #ccc;margin-bottom:14px;border-radius:5px;;box-shadow:0 1px 0 #eeeeee;
+	background: #ffffff;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmOGY4ZjgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f8f8f8 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f8f8f8));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f8f8f8 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#f8f8f8 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f8f8f8 100%);
+	background: linear-gradient(to bottom,  #ffffff 0%,#f8f8f8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8f8f8',GradientType=0 );
+}
+#spinTopLayer .spinTopLayerList .spinTopLayerListcount {float:left;color:#555;line-height:30px;padding-left:15px;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListcount strong {font-size:14px;font-weight:bold;color:#df5031;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListSort {float:right;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListSort a {position:relative;float:left;display:block;overflow:hidden;width:80px;height:30px;text-align:center;border-left:1px solid #ccc;color:#555;line-height:30px;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListSort a span {position:absolute;left:-9999px;visibility:hidden;z-index:-1;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListSort a:hover, #spinTopLayer .spinTopLayerListSort a.on {height:32px;font-weight:bold;letter-spacing:-1px;background:#fff;}
+#spinTopLayer .spinTopLayerList .spinTopLayerListSort a:last-child:hover, #spinTopLayer .spinTopLayerListSort a:last-child.on {border-radius:0 4px 4px 0;}
+
+/* 댓글 > 리스트 */
+#spinTopLayer .spinTopLayerList .commentList {clear:both;}
+#spinTopLayer .spinTopLayerList .commentList li {position:relative;overflow:hidden;padding:0 2px 5px 65px;margin-bottom:10px;z-index:100;}
+#spinTopLayer .spinTopLayerList .commentList li .profile {position:absolute;width:50px;height:50px;left:0;top:0;border-radius:5px;z-index:101;}
+#spinTopLayer .spinTopLayerList .commentList li .profile img {width:50px;height:50px;border-radius:4px;}
+#spinTopLayer .spinTopLayerList .commentList li .module {position:relative;width:100%;padding:10px 0 0 0;border:1px solid #d9d9d9;border-radius:5px;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname {float:left;color:#5272af;font-weight:bold;padding-left:12px;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.donga {padding-left:32px;color:#de501c;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_donga_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.donga a {color:#de501c;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.facebook {padding-left:32px;color:#5272af;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_facebook_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.facebook a {color:#5272af;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.twitter {padding-left:32px;color:#2cafe1;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_twitter_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.twitter a {color:#2cafe1 !important;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.me2day {padding-left:32px;color:#745abd;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_me2day_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.me2day a {color:#745abd;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.kakao {padding-left:32px;color:#745abd;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_kakao_s.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .nickname.kakao a {color:#745abd;}
+#spinTopLayer .spinTopLayerList .commentList li .module .createdate {float:left;font-size:11px;color:#999;margin-left:10px;padding-left:10px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/line_greatedate.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .comment {clear:both;padding:10px 13px 12px;color:#222;}
+#spinTopLayer .spinTopLayerList .commentList li .module .comment em {color:#999;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation {position:relative;width:100%;height:32px;line-height:32px;border-top:1px solid #d9d9d9;border-radius:0 0 4px 4px;overflow:hidden;color:#666}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .notify {float:left;padding-left:36px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bul_reply.gif) no-repeat 13px center;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .notify a {color:#666;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .reply {float:left;padding-left:5px;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .action {float:right;margin-top:7px;height:16px;line-height:16px;font-size:11px;color:#666;font-weight:normal;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .action .agree {float:left;overflow:hidden;height:16px;padding:1px 0 1px 1px;line-height:16px;margin-right:13px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_agree.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .action .disagree {float:left;overflow:hidden;height:16px;padding:1px 0 1px 1px;line-height:16px;margin-right:13px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_disagree.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .action a {display:inline-block;width:25px;height:16px;line-height:999px;overflow:hidden;}
+#spinTopLayer .spinTopLayerList .commentList li .module .operation .action em {display:inline-block;height:15px;line-height:15px;padding:0 7px 0 7px;vertical-align:top;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_ac_agree.gif) no-repeat right -1px;}
+#spinTopLayer .spinTopLayerList .commentList li .module .delete {position:absolute;right:13px;top:10px;display:block;z-index:9999;}
+#spinTopLayer .spinTopLayerList .commentList li .module .delete a {display:block;width:11px;height:11px;text-indent:-9999px;overflow:hidden;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_del.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList li .module .icon_a {position:absolute;left:-5px;top:8px;display:block;width:5px;height:7px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/bg_bul_a.gif) no-repeat 0 0;}
+
+/* 댓글 > 리스트 > 댓글에 댓글 쓰기 */
+#spinTopLayer .spinTopLayerList .commentList .etc {display:none;padding:13px 0 5px 0;background:#f6f7f8;border-radius:0 0 4px 4px;border-top:1px solid #ebebeb;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyWriteBox {margin:0 13px 0;border:1px solid #bbbbbb;border-radius:5px;background:#fafafa;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin {float:left;margin:6px 0 6px 6px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul {float:left;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li {float:left;margin:0 4px 0 0;padding:0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li .on{}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li div a {display:block;width:25px;height:24px;text-indent:-9999px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_login.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_donga a {background-position:0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_facebook a {background-position:-29px 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_twitter a {width:24px;background-position:-58px 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_me2day a {background-position:-86px 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_donga.on a {background-position:0 -25px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_facebook.on a {background-position:-29px -25px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_twitter.on a {width:24px;background-position:-58px -25px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogin ul li #spinTop_sns_me2day.on a {background-position:-86px -25px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogTxt {float:left;padding-left:2px;margin:6px 0 0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogTxt img {display:none;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogTxt.on img {display:inline}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogoutBtn {float:left;margin:6px 0 0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyLogoutBtn a {display:block;width:65px;height:24px;text-indent:-9999px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_logout.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyWrite {position:relative;clear:both;padding:0 105px 15px 10px;/* border-top:1px solid #e8e8e8;border-radius:0 0 4px 4px; */border-radius:4px;background:#fff;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyWrite textarea {width:100%;resize:none;border:0 none;height:50px;margin:10px 0 0 0;padding:0 5px 10px 5px;border-radius:5px;color:#aaa;line-height:16px;overflow:auto;ime-mode:active;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyWrite input {cursor:pointer;position:absolute;right:10px;top:10px;display:inline-block;color:transparent;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_reply_submit_2.gif) 0 0;width:77px;height:62px;padding:0;border:0 none;text-indent:-9999px;line-height:999px;overflow:hidden;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyWrite .contextsize {position:absolute;left:10px;bottom:7px;color:#aaa;}
+
+/* 댓글 > 리스트 > 댓글에 댓글 리스트 */
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList {}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList {padding:0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li {margin:0;padding:10px 0 7px;margin:0 13px;border-top:1px solid #ebebeb;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .profile {display:none;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module {position:relative;float:left;width:100%;padding:0;border:0 none;border-radius:0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li:first-child {border-top:0 none;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname {float:left;color:#333;font-weight:bold;padding-left:19px;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.donga {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_donga_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.facebook {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_facebook_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.twitter {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_twitter_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.me2day {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_me2day_s_2.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .nickname.kakao {background:url(http://img.donga.com/donga2013/images/donga_sns_reply/icon_kakao_s.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .createdate {float:left;font-size:11px;color:#999999;margin-left:10px;padding-left:10px;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/line_greatedate.gif) no-repeat 0 center;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .action {position:absolute;right:1px;top:1px;width:11px;height:11px;display:block;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .action .delete {position:relative;top:0;right:0;display:block;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .action .delete a {display:block;width:11px;height:11px;text-indent:-9999px;overflow:hidden;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_del.gif) no-repeat 0 0;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .comment {clear:both;padding:5px 0 0 0;color:#222;}
+#spinTopLayer .spinTopLayerList .commentList .etc .spinTopLayerReplyList .commentList li .module .comment em {color:#999;}
+
+/* 댓글 > 페이징 */
+#spinTopLayer .page {position:relative;padding:20px 0 25px;text-align:center;font-weight:normal;}
+#spinTopLayer .page strong {display:inline-block;height:22px;line-height:22px;font-size:13px;font-weight:bold;letter-spacing:-1px;color:#df5031;padding:0 9px 0 9px;vertical-align:middle;background:none;border:0 none;}
+#spinTopLayer .page a {display:inline-block;height:22px;line-height:22px;font-size:13px;font-weight:normal;color:#888;padding:0 9px 0 9px;vertical-align:middle;background:none;}
+#spinTopLayer .page a:first-child {background:none;}
+#spinTopLayer .page strong:first-child {background:none;}
+#spinTopLayer .page a:hover {color:#df5031;}
+#spinTopLayer .page .left {width:22px;margin:0 7px 0 0;padding:0;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_page_left.gif) no-repeat 0 0 !important;;}
+#spinTopLayer .page .right {width:22px;margin:0 0 0 7px;padding:0;background:url(http://img.donga.com/donga2013/images/donga_sns_reply/btn_page_right.gif) no-repeat 0 0;}
+#spinTopLayer .page .left span, #spinTopLayer .page .right span {position:absolute;visibility:hidden;z-index:-1;}
