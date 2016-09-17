@@ -16,3 +16,6 @@ class TestChosunCrawler(unittest.TestCase):
         mock_readURL.side_effect = lambda url, _: open(urlmap[url], 'r', encoding='euc-kr').read()
 
         articles = chosun.crawlSince(1473858000)
+        self.assertEqual(len(articles), 3)
+        self.assertEqual(articles[1]['publishedAt'], 1473915600)  # 2016.09.15 14:00
+        self.assertEqual(articles[2]['publishedAt'], 1473858000)  # 2016.09.14 22:00
