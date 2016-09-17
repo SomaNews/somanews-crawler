@@ -26,7 +26,7 @@ class ParserYonhap:
             'title': d('.tit-article').text(),
             'author': '연합뉴스',
             'link': url,
-            'provider': 'yeonhap',
+            'provider': 'yonhap',
             'category': '연합뉴스',
             'description': '',
             'publishedAt': publishedAt,
