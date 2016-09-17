@@ -5,7 +5,8 @@ import logging
 from crawler import utils as ut
 
 
-def parseNewsHtml(newshtml):
+def parseNewsFromURL(url):
+    newshtml = ut.readURL(url, 'euc-kr')
     d = pq(newshtml)
 
     # description
@@ -23,19 +24,13 @@ def parseNewsHtml(newshtml):
     return {
         'title': d('.news_title_text h1').text(),
         'author': d('.news_title_author').text(),
+        'link': url,
         'provider': 'chosun',
         'category': d('.news_title_cat a').eq(0).text(),
         'description': description,
         'publishedAt': publishedAt,
         'content': d('.par').text()
     }
-
-
-def parseNewsFromURL(url):
-    rawhtml = ut.readURL(url, 'euc-kr')
-    news = parseNewsHtml(rawhtml)
-    news['link'] = url
-    return news
 
 
 def parseNewsListHtml(newshtml):
