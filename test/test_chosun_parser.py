@@ -1,6 +1,8 @@
 import unittest
 from crawler import chosun
 from nose.plugins.attrib import attr
+
+
 class TestChosunCrawler(unittest.TestCase):
     def test_parsenewshtml(self):
         rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
