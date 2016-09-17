@@ -1,6 +1,6 @@
 import unittest
 from crawler import chosun
-
+from nose.plugins.attrib import attr
 class TestChosunCrawler(unittest.TestCase):
     def test_parsenewshtml(self):
         rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
@@ -20,6 +20,14 @@ class TestChosunCrawler(unittest.TestCase):
         content = news['content']
         self.assert_(content.startswith('정부가 지난 9일 북한이 실시한 5차 '))
         self.assert_(content.endswith('시스템을 개편해야 한다”고 말했다.'))
+
+    @attr('slow')
+    def test_parsenewsurl(self):
+        news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
+        self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
+        self.assertEqual(news['author'], '박건형')
+        self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
+        self.assertEqual(news['provider'], 'chosun')
 
     def test_newslist_reader(self):
         rawhtml = open('testdata/chosun_article_list.html', 'r', encoding='euc-kr').read()

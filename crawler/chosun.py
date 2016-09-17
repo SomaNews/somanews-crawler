@@ -1,6 +1,6 @@
-import feedparser as fp
 import time
 import re
+from urllib.request import urlopen
 from pyquery import PyQuery as pq
 
 
@@ -11,11 +11,8 @@ def parseNewsHtml(newshtml):
     description = d('.news_subtitle').html().replace('<br/>', '\n').strip()
 
     # publishedAt
-    publishedAtString = d('.news_date').text()
-    timeStr = re.match(
-        r'입력 : (\d+.\d+.\d+ \d+:\d+)',
-        publishedAtString
-    ).group(1)
+    timeStr = d('.news_date').text()
+    timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+)', timeStr).group(1)
     publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M"))
 
     # author
@@ -33,17 +30,20 @@ def parseNewsHtml(newshtml):
     }
 
 
+def parseNewsFromURL(url):
+    rawhtml = urlopen(url).read().decode('euc-kr')
+    news = parseNewsHtml(rawhtml)
+    news['link'] = url
+    return news
+
 
 def parseNewsListHtml(newshtml):
     d = pq(newshtml)
     newslist = []
     for item in d('dl.list_item').items():
         headline = item.find('dt')
-        url = headline.find('a').attr('href')
-        title = headline.text().strip()
         newslist.append({
-            'title': title,
-            'url': url
+            'title': headline.text().strip(),
+            'url': headline.find('a').attr('href')
         })
-
     return newslist
