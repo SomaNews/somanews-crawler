@@ -1,8 +1,9 @@
 import time
 import re
+import urllib
 from urllib.request import urlopen
 from pyquery import PyQuery as pq
-
+import logging
 
 def readURL(url, encoding):
     """URL에 따라 파일을 읽는다.
@@ -78,22 +79,27 @@ def crawlSince(since):
     def newsEntryGenerator():
         page = 1
         while True:
-            pageStr = "http://news.chosun.com/svc/list_in/list.html?source=1&pn=%d" % page
+            pageStr = "http://news.chosun.com/svc/list_in/list.html?pn=%d" % page
             pageHTML = readURL(pageStr, 'euc-kr')
             for entry in parseNewsListHtml(pageHTML):
                 yield entry
             page += 1
 
     newsList = []
-    breakSwitch = 0
-    for newsEntry in newsEntryGenerator():
-        breakSwitch += 1
-        if breakSwitch >= 6:
-            raise RuntimeError('Running too long')
-        news = parseNewsFromURL(newsEntry['url'])
-        if news['publishedAt'] < since:
-            break
-
-        newsList.append(news)
+    try:
+        for newsEntry in newsEntryGenerator():
+            try:
+                news = parseNewsFromURL(newsEntry['url'])
+                logging.info('Crawling news "%s"' % news['title'])
+                if news['publishedAt'] < since:
+                    break
+                newsList.append(news)
+            except:
+                # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
+                logging.exception('Error while crawling news "%s"', news['title'])
+    except:
+        # 뭔가 오류가 났으니까 나중에 디버깅을 해야지
+        # 일단 여기까지 크롤링한 newsList는 리턴을 해주자.
+        logging.exception('Error in newsEntryGenerator')
 
     return newsList
