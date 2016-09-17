@@ -1,13 +1,19 @@
 import unittest
+from unittest.mock import patch
 from crawler import chosun
 from nose.plugins.attrib import attr
+
+
 class TestChosunCrawler(unittest.TestCase):
-    def test_parsenewshtml(self):
-        rawhtml = open('testdata/chosun_article.html', 'r', encoding='euc-kr').read()
-        news = chosun.parseNewsHtml(rawhtml)
+    @patch('crawler.utils.readURL')
+    def test_parsenewsurl(self, mock_urlReader):
+        rawhtml = open('testdata/chosun/chosun_article.html', 'r', encoding='euc-kr').read()
+        mock_urlReader.return_value = rawhtml
+
+        news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
-        self.assertEqual(news['author'], '박건형')
-        # link 생략 : local file을 이용한 테스트라 link가 의미가 없다.
+        self.assertEqual(news['author'], '박건형 기자')
+        self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['provider'], 'chosun')
         self.assertEqual(news['category'], '정부ㆍ지자체')
         self.assertEqual(news['description'], '''\
@@ -21,16 +27,8 @@ class TestChosunCrawler(unittest.TestCase):
         self.assert_(content.startswith('정부가 지난 9일 북한이 실시한 5차 '))
         self.assert_(content.endswith('시스템을 개편해야 한다”고 말했다.'))
 
-    @attr('slow')
-    def test_parsenewsurl(self):
-        news = chosun.parseNewsFromURL('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
-        self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
-        self.assertEqual(news['author'], '박건형')
-        self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
-        self.assertEqual(news['provider'], 'chosun')
-
     def test_newslist_reader(self):
-        rawhtml = open('testdata/chosun_article_list.html', 'r', encoding='euc-kr').read()
+        rawhtml = open('testdata/chosun/chosun_article_list.html', 'r', encoding='euc-kr').read()
         newslist = chosun.parseNewsListHtml(rawhtml)
         self.assertEqual(len(newslist), 10)
 

@@ -1,40 +1,36 @@
 import time
 import re
-from urllib.request import urlopen
 from pyquery import PyQuery as pq
+import logging
+from crawler import utils as ut
 
 
-def parseNewsHtml(newshtml):
+def parseNewsFromURL(url):
+    newshtml = ut.readURL(url, 'euc-kr')
     d = pq(newshtml)
 
     # description
-    description = d('.news_subtitle').html().replace('<br/>', '\n').strip()
+    subtitleHtml = d('.news_subtitle').html()
+    if subtitleHtml:
+        description = d('.news_subtitle').html().replace('<br/>', '\n').strip()
+    else:
+        description = ''
 
     # publishedAt
     timeStr = d('.news_date').text()
     timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+)', timeStr).group(1)
     publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M"))
 
-    # author
-    authorStr = d('.news_title_author').text()
-    author = re.match(r'(.+) 기자', authorStr).group(1)
-
     return {
         'title': d('.news_title_text h1').text(),
-        'author': author,
+        'author': d('.news_title_author').text(),
+        'link': url,
         'provider': 'chosun',
         'category': d('.news_title_cat a').eq(0).text(),
         'description': description,
         'publishedAt': publishedAt,
         'content': d('.par').text()
     }
-
-
-def parseNewsFromURL(url):
-    rawhtml = urlopen(url).read().decode('euc-kr')
-    news = parseNewsHtml(rawhtml)
-    news['link'] = url
-    return news
 
 
 def parseNewsListHtml(newshtml):
@@ -50,3 +46,27 @@ def parseNewsListHtml(newshtml):
             'providerNewsID': newsID,
         })
     return newslist
+
+
+def crawlSince(since):
+    def newsEntryGenerator():
+        page = 1
+        while True:
+            pageStr = "http://news.chosun.com/svc/list_in/list.html?pn=%d" % page
+            pageHTML = ut.readURL(pageStr, 'euc-kr')
+            for entry in parseNewsListHtml(pageHTML):
+                yield entry
+            page += 1
+
+    newsList = []
+    for newsEntry in newsEntryGenerator():
+        try:
+            news = parseNewsFromURL(newsEntry['url'])
+            logging.info('Crawling news "%s"' % news['title'])
+            if news['publishedAt'] < since:
+                break
+            newsList.append(news)
+        except:
+            # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
+            logging.exception('Error while crawling news "%s"', news['title'])
+    return newsList
