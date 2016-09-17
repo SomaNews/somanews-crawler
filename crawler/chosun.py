@@ -42,8 +42,11 @@ def parseNewsListHtml(newshtml):
     newslist = []
     for item in d('dl.list_item').items():
         headline = item.find('dt')
+        url = headline.find('a').attr('href')
+        newsID = re.match(r'.+/(\d+)\.html', url).group(1)
         newslist.append({
             'title': headline.text().strip(),
-            'url': headline.find('a').attr('href')
+            'url': url,
+            'providerNewsID': newsID,
         })
     return newslist

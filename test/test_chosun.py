@@ -36,6 +36,7 @@ class TestChosunCrawler(unittest.TestCase):
 
         self.assertEqual(newslist[0]['title'], "[카드뉴스] 자녀가 代이은 '키다리 아저씨'의 쌀가마 선행")
         self.assertEqual(newslist[0]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/13/2016091301378.html")
+        self.assertEqual(newslist[0]['providerNewsID'], "2016091301378")
 
         self.assertEqual(newslist[-1]['title'], "[시론] 北核의 목적은 적화통일이다")
         self.assertEqual(newslist[-1]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/13/2016091302464.html")
