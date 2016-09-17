@@ -1,0 +1,8 @@
+id : 뉴스글 아이디
+source : 뉴스사
+link : 뉴스 URL
+cTime : 뉴스 작성 시각
+title : 뉴스 타이틀
+content : 콘텐츠
+mainImage : 메인 이미지 (이미지 URL)
+
