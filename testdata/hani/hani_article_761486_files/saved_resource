@@ -1,0 +1,12 @@
+/**/ window.haniSnsCollector.getFacebook({
+   "og_object": {
+      "id": "1074126656027770",
+      "type": "website",
+      "updated_time": "2016-09-17T11:48:28+0000"
+   },
+   "share": {
+      "comment_count": 0,
+      "share_count": 2
+   },
+   "id": "http://www.hani.co.kr/arti/society/society_general/761486.html"
+});
