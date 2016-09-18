@@ -27,7 +27,7 @@ class ParserChosun:
             'author': d('.news_title_author').text(),
             'link': url,
             'provider': 'chosun',
-            'category': d('.news_title_cat a').eq(0).text(),
+            'category': d('title').text().rsplit('-')[-1].strip(),
             'description': description,
             'publishedAt': publishedAt,
         }
