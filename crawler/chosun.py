@@ -33,7 +33,7 @@ class ParserChosun:
         }
 
     def parseNewsList(self, page):
-        pageStr = "http://news.chosun.com/svc/list_in/list.html?pn=%d" % page
+        pageStr = "http://news.chosun.com/svc/list_in/list.html?source=1&pn=%d" % page
         pageHTML = ut.readURL(pageStr, 'euc-kr')
         d = pq(pageHTML)
         newslist = []
