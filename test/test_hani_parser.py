@@ -10,12 +10,12 @@ class TestHaniParser(unittest.TestCase):
         mock_urlReader.return_value = rawhtml
 
         parser = hani.ParserHani()
-        news = parser.parseNews('http://news.donga.com/List/3/all/20160918/80317105/1')
+        news = parser.parseNews('http://www.hani.co.kr/arti/society/labor/761484.html')
         self.assertEqual(news['title'], "“고용 최고, 실업 최저” 제주의 비결은?")
-        self.assertEqual(news['author'], '이창곤 선임기자')
+        self.assertEqual(news['author'], '이창곤 선임기자 goni@hani.co.kr')
         self.assertEqual(news['link'], 'http://www.hani.co.kr/arti/society/labor/761484.html')
         self.assertEqual(news['provider'], 'hani')
-        self.assertEqual(news['category'], '사회>노동')
+        self.assertEqual(news['category'], '사회 > 노동')
         self.assertEqual(news['description'], '''\
 전국 16개 시도 고용률 분석 결과
 제주, 올 2분기 고용률 68.1%로 최고

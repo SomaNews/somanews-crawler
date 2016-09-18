@@ -21,38 +21,31 @@ class ParserHani:
         header = d('div.article-head')
 
         # publishedAt
-        timeStr = d('p.title_foot .date-time').text()
-        publishedAt = time.mktime(time.strptime(timeStr, "%Y-%m-%d %H:%M:%S"))
+        timeStr = d('.date-time').text()
+        publishedAt = time.mktime(time.strptime(timeStr, "등록 : %Y-%m-%d %H:%M"))
 
         # category
-        location = header.find('.location')
-        category = []
-        for subCategory in location.find('span').items():
-            category.append(subCategory.text())
-        category.append(location.find('strong a').eq(0).text())
-        category = ''.join(category)
+        categoryDiv = header.find('.category')
+        category = ' > '.join(
+        [
+            categoryDiv.find('strong').text().strip(),
+            categoryDiv.find('span').text().strip(),
+        ])
 
         # content
-        article_txt = d('div.article_txt')
-        article_txt.find('.recommend').next_all().remove()
-        article_txt.find('.recommend').remove()
-
-        firstChild = article_txt.children().eq(0)
-        if firstChild.is_('strong'):
-            description = firstChild.text()
-            firstChild.remove()
-        else:
-            description = ''
-
-
+        description = ut.textWithNewline(d('div.article-text .subtitle'))
+        content = (
+            ut.textWithNewline(d('div.article-text .text'))
+        )
         return {
-            'title': header.find('h1').text(),
-            'author': header.find('.repoter').text(),
+            'title': header.find('.title').text(),
+            'author': content.rsplit('\n', 1)[-1],
             'link': url,
-            'provider': 'donga',
+            'provider': 'hani',
             'category': category,
             'description': description,
             'publishedAt': publishedAt,
+            'content': content,
         }
 
 
