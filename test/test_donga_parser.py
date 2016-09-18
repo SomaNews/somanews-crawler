@@ -33,6 +33,5 @@ class TestDongaParser(unittest.TestCase):
         self.assertEqual(newslist[0]['title'], "제주 中관광객, 이번엔 성당서 묻지마 흉기난동")
         self.assertEqual(newslist[0]['url'], "http://news.donga.com/List/3/all/20160918/80317130/1")
         self.assertEqual(newslist[0]['providerNewsID'], "20160918/80317130/1")
-
         self.assertEqual(newslist[-1]['title'], "‘사드 반대’ 출구전략 찾는 야권")
         self.assertEqual(newslist[-1]['url'], "http://news.donga.com/List/3/all/20160918/80317006/1")
