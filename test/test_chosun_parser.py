@@ -22,6 +22,8 @@ class TestChosunCrawler(unittest.TestCase):
 실험 장소와 수백km 거리
 한국 땅·공해선 포집 어렵고 장비 성능 떨어진다는 지적도''')
         self.assertEqual(news['publishedAt'], 1474106340)  # 2016.09.17 18:59
+        self.assert_(news['content'].startswith("정부가 지난 9일 북한이 실시한 5차 핵실험을"))
+        self.assert_(news['content'].endswith("전면적으로 시스템을 개편해야 한다”고 말했다."))
 
 
     @patch('crawler.utils.readURL')

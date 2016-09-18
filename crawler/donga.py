@@ -44,6 +44,8 @@ class ParserDonga:
         else:
             description = ''
 
+        content = ut.textWithNewline(article_txt)
+
 
         return {
             'title': header.find('h1').text(),
@@ -53,6 +55,7 @@ class ParserDonga:
             'category': category,
             'description': description,
             'publishedAt': publishedAt,
+            'content': content,
         }
 
 

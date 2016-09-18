@@ -30,6 +30,7 @@ class ParserChosun:
             'category': d('title').text().rsplit('-', 1)[-1].strip(),
             'description': description,
             'publishedAt': publishedAt,
+            'content': ut.textWithNewline(d('.par')),
         }
 
     def parseNewsList(self, page):
