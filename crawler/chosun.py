@@ -13,7 +13,7 @@ class ParserChosun:
         # description
         subtitleHtml = d('.news_subtitle').html()
         if subtitleHtml:
-            description = d('.news_subtitle').html().replace('<br/>', '\n').strip()
+            description = ut.textWithNewline(d('.news_subtitle'))
         else:
             description = ''
 
