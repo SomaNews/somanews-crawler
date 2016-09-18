@@ -1,5 +1,4 @@
 from sortedcontainers import SortedListWithKey
-from functools import total_ordering
 
 
 class NewsEntry:
