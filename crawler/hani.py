@@ -46,6 +46,7 @@ class ParserHani:
             'description': description,
             'publishedAt': publishedAt,
             'content': content,
+            'imageURL': d('.image-area .imageC img').attr('src') or ''
         }
 
 

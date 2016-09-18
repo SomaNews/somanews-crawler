@@ -46,7 +46,6 @@ class ParserDonga:
 
         content = ut.textWithNewline(article_txt)
 
-
         return {
             'title': header.find('h1').text(),
             'author': header.find('.repoter').text(),
@@ -55,6 +54,7 @@ class ParserDonga:
             'category': category,
             'description': description,
             'publishedAt': publishedAt,
+            'imageURL': d('.articlePhotoC img').attr('src') or '',
             'content': content,
         }
 

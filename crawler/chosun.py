@@ -10,13 +10,6 @@ class ParserChosun:
         newshtml = ut.readURL(url, 'euc-kr')
         d = pq(newshtml)
 
-        # description
-        subtitleHtml = d('.news_subtitle').html()
-        if subtitleHtml:
-            description = ut.textWithNewline(d('.news_subtitle'))
-        else:
-            description = ''
-
         # publishedAt
         timeStr = d('.news_date').text()
         timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+)', timeStr).group(1)
@@ -28,9 +21,10 @@ class ParserChosun:
             'link': url,
             'provider': 'chosun',
             'category': d('title').text().rsplit('-', 1)[-1].strip(),
-            'description': description,
+            'description': ut.textWithNewline(d('.news_subtitle')),
             'publishedAt': publishedAt,
             'content': ut.textWithNewline(d('.par')),
+            'imageURL': d('.news_imgbox img').attr('src') or '',
         }
 
     def parseNewsList(self, page):

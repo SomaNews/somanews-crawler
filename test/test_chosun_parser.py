@@ -16,6 +16,7 @@ class TestChosunCrawler(unittest.TestCase):
         self.assertEqual(news['author'], '박건형 기자')
         self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['provider'], 'chosun')
+        self.assertEqual(news['imageURL'], './chosun_article_files/2016091700921_0.jpg')
         self.assertEqual(news['category'], '정치 > 정부ㆍ지자체')
         self.assertEqual(news['description'], '''\
 북핵 실험 분석할 유일한 단서

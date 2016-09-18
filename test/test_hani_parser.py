@@ -16,6 +16,7 @@ class TestHaniParser(unittest.TestCase):
         self.assertEqual(news['link'], 'http://www.hani.co.kr/arti/society/labor/761484.html')
         self.assertEqual(news['provider'], 'hani')
         self.assertEqual(news['category'], '사회 > 노동')
+        self.assertEqual(news['imageURL'], '')  # no main image present here
         self.assertEqual(news['description'], '''\
 전국 16개 시도 고용률 분석 결과
 제주, 올 2분기 고용률 68.1%로 최고
