@@ -1,4 +1,5 @@
 import urllib
+import lxml
 
 def readURL(url, encoding):
     """URL에 따라 파일을 읽는다.
@@ -11,3 +12,27 @@ def readURL(url, encoding):
         str -- 읽은 내용
     """
     return urllib.request.urlopen(url).read().decode(encoding)
+
+
+def textWithNewline(element):
+    if not element:
+        return ''
+
+    text = []
+
+    def add_text(tag, no_tail=False):
+        if tag.text and not isinstance(tag, lxml.etree._Comment):
+            text.append(tag.text.strip())
+
+        for child in tag.getchildren():
+            add_text(child)
+
+        if tag.tag == 'p' or tag.tag == 'br':
+            text.append('\n')
+
+        if not no_tail and tag.tail:
+            text.append(tag.tail.strip())
+
+    for tag in element:
+        add_text(tag, no_tail=True)
+    return ' '.join(text).strip().replace(' \n', '\n').replace('\n ', '\n')

@@ -20,7 +20,7 @@ def crawlSince(parser, since):
                 newsList.append(news)
             except:
                 # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
-                logging.exception('Error while crawling news')
+                logging.exception('Error while crawling news "%s"' % newsEntry['title'])
 
     except:
         # 일단 지금까지 크롤링한거라도
