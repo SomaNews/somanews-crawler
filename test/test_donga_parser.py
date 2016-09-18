@@ -18,7 +18,8 @@ class TestDongaParser(unittest.TestCase):
         self.assertEqual(news['category'], '뉴스 > 스포츠 > 씨름')
         self.assertEqual(news['description'], '[커버스토리/ 씨름, 부활의 샅바]')
         self.assertEqual(news['publishedAt'], 1474135200)  # 2016-09-18 03:00:00
-
+        self.assert_(news['content'].startswith("영화 제작자인 이앤엠필름 김동현 대표는 요즘 "))
+        self.assert_(news['content'].endswith("홍정수 기자 hong@donga.com"))
 
     @patch('crawler.utils.readURL')
     def test_parsenewslist(self, mock_urlReader):
