@@ -1,7 +1,6 @@
 import time
 import re
 from pyquery import PyQuery as pq
-import logging
 from crawler import utils as ut
 
 class ParserDonga:
@@ -31,7 +30,7 @@ class ParserDonga:
         for subCategory in location.find('span').items():
             category.append(subCategory.text())
         category.append(location.find('strong a').eq(0).text())
-        category = ''.join(category)
+        category = ' '.join(category)
 
         # content
         article_txt = d('div.article_txt')
