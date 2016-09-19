@@ -1,7 +1,8 @@
 from crawler import (
     crawler,
     chosun,
-    donga
+    donga,
+    hani
 )
 
 import sys
@@ -16,6 +17,7 @@ def main():
     parserClassDict = {
         'chosun': chosun.ParserChosun,
         'donga': donga.ParserDonga,
+        'hani': hani.ParserHani,
     }
 
     parserType = sys.argv[1]

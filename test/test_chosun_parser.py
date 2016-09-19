@@ -16,7 +16,7 @@ class TestChosunCrawler(unittest.TestCase):
         self.assertEqual(news['author'], '박건형 기자')
         self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
         self.assertEqual(news['provider'], 'chosun')
-        self.assertEqual(news['imageURL'], './chosun_article_files/2016091700921_0.jpg')
+        self.assertEqual(news['imageURL'], 'http://image.chosun.com/sitedata/image/201609/17/2016091700921_0.jpg')
         self.assertEqual(news['category'], '정치 > 정부ㆍ지자체')
         self.assertEqual(news['description'], '''\
 북핵 실험 분석할 유일한 단서
@@ -36,9 +36,9 @@ class TestChosunCrawler(unittest.TestCase):
         newslist = parser.parseNewsList(1)
         self.assertEqual(len(newslist), 10)
 
-        self.assertEqual(newslist[0]['title'], "[카드뉴스] 자녀가 代이은 '키다리 아저씨'의 쌀가마 선행")
-        self.assertEqual(newslist[0]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/13/2016091301378.html")
-        self.assertEqual(newslist[0]['providerNewsID'], "2016091301378")
+        self.assertEqual(newslist[0]['title'], "이통사, 오늘부터 갤노트7 새 제품 교환")
+        self.assertEqual(newslist[0]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/19/2016091901279.html")
+        self.assertEqual(newslist[0]['providerNewsID'], "2016091901279")
 
-        self.assertEqual(newslist[-1]['title'], "[시론] 北核의 목적은 적화통일이다")
-        self.assertEqual(newslist[-1]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/13/2016091302464.html")
+        self.assertEqual(newslist[-1]['title'], "[조용헌 살롱] [1058] 동양철학 고택")
+        self.assertEqual(newslist[-1]['url'], "http://news.chosun.com/site/data/html_dir/2016/09/18/2016091802104.html")

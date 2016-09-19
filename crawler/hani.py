@@ -60,7 +60,7 @@ class ParserHani:
 
         for item in contents.find('div.list').items():
             titleItem = item.find('.article-title a')
-            url = titleItem.attr('href')
+            url = 'http://www.hani.co.kr' + titleItem.attr('href')
             title = re.sub(r'\n *', ' ', titleItem.text())
             newsID = re.match(r'.+/(\d+).html', url).group(1)
             newslist.append({

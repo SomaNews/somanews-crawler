@@ -35,9 +35,9 @@ class TestHaniParser(unittest.TestCase):
         newslist = parser.parseNewsList(1)
         self.assertEqual(len(newslist), 15)
 
-        self.assertEqual(newslist[0]['title'], "이통3사 과징금 3129억원 국고로…가입자 위한 사용은 ‘0’원")
-        self.assertEqual(newslist[0]['url'], "http://www.hani.co.kr/arti/economy/it/761487.html")
-        self.assertEqual(newslist[0]['providerNewsID'], "761487")
+        self.assertEqual(newslist[0]['title'], "우정사업본부, 국제선편 우편물 접수 20일부터 순차적으로 재개")
+        self.assertEqual(newslist[0]['url'], "http://www.hani.co.kr/arti/economy/economy_general/761648.html")
+        self.assertEqual(newslist[0]['providerNewsID'], "761648")
 
-        self.assertEqual(newslist[-1]['title'], "연휴 막바지 고속도로 정체 시작…“오후 3∼4시 절정”")
-        self.assertEqual(newslist[-1]['url'], "http://www.hani.co.kr/arti/society/society_general/761473.html")
+        self.assertEqual(newslist[-1]['title'], "민변 “정부, 함경북도 수해 복구 즉시 나서야”")
+        self.assertEqual(newslist[-1]['url'], "http://www.hani.co.kr/arti/politics/defense/761634.html")
