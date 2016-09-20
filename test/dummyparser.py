@@ -18,8 +18,11 @@ class DummyParser:
 
 
     def parseNewsList(self, page):
+        if page >= 6:
+            return []
+
         newsList = []
-        for newsID in range(10 * (page - 1) + 1, 10 * page + 1):
+        for newsID in range(50 - 10 * (page - 1), 50 - 10 * page, -1):
             newsURL = 'dummy://news%d.html' % newsID
             newsList.append({
                 'title': '뉴스 #%d' % newsID,

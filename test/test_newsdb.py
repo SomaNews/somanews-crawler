@@ -29,7 +29,6 @@ class TestNewsDB(unittest.TestCase):
         db.addNews(n2)
         self.assertEqual(db.getLatestNews()['publishedAt'], 2)
 
-
     def test_get_latest_news_reverse(self):
         parser = DummyParser()
         n1 = parser.parseNews('dummy://news1.html', 1)

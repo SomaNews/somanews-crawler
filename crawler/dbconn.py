@@ -42,3 +42,10 @@ class NewsDatabase:
         article = self.articles.find().sort('publishedAt', -1).limit(1).next()
         del article['_id']
         return article
+
+    def getNewsCount(self, provider=None):
+        if not provider:
+            return self.articles.count()
+        else:
+            return self.articles.count({'provider': provider})
+
