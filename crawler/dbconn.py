@@ -1,40 +1,42 @@
-from sortedcontainers import SortedListWithKey
-
-
-class NewsEntry:
-    def __init__(self, data):
-        self.data = data
-
-        # 데이터 구분용으로 필요한것
-        self.source = data['source']  # 뉴스사
-        self.newsID = data['newsID']
-        self.cTime = data['cTime']
-
-    # Equality check
-    def __eq__(self, rhs):
-        return (
-            self.source == rhs.source and
-            self.newsID == rhs.newsID
-        )
+from pymongo import MongoClient
 
 
 class NewsDatabase:
     def __init__(self):
-        self.newsList = SortedListWithKey(key=lambda x: -x.cTime)
+        self.client = MongoClient('localhost', 27017)
+        self.client.drop_database('test')
+        self.db = self.client.get_database('test')
+        self.articles = self.db.get_collection('articles')
+
+
+    def close(self):
+        self.client.close()
+
+    def hasNews(self, provider, providerNewsID):
+        article = self.articles.find_one({
+            'provider': provider,
+            'providerNewsID': providerNewsID
+        })
+        return bool(article)
+
+    def isValidNews(self, news):
+        return all(k in news for k in [
+            'title', 'author', 'link', 'provider', 'category',
+            'description', 'publishedAt', 'content'
+        ])
 
     def addNews(self, news):
-        entry = NewsEntry(news)
-        if entry in self.newsList:
-            raise ValueError('Duplicate news')
-        self.newsList.add(entry)
+        assert self.isValidNews(news)
+        # insert_one 함수에서 인자로 들어온 dict를 변경합니다 (_id 추가)
+        # 이를 방지하기 위해 dict()를 이용해 복사본을 insert하도록 합니다.
+        self.articles.insert_one(dict(news))
+
+    def addMultipleNews(self, newsList):
+        for news in newsList:
+            assert self.isValidNews(news)
+        self.articles.insert_many(newsList)
 
     def getLatestNews(self):
-        return self.newsList[0]
-
-    def getLatestNewsTime(self):
-        return self.newsList[0].cTime
-
-    def getLatestNewses(self, count):
-        return self.newsList[:count]
-
-
+        article = self.articles.find().sort('publishedAt', -1).limit(1).next()
+        del article['_id']
+        return article
