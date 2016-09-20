@@ -2,9 +2,9 @@ from pymongo import MongoClient
 
 
 class NewsDatabase:
-    def __init__(self):
+    def __init__(self, dbname):
         self.client = MongoClient('localhost', 27017)
-        self.db = self.client.get_database('test')
+        self.db = self.client.get_database(dbname)
         self.articles = self.db.get_collection('articles')
 
     def close(self):
