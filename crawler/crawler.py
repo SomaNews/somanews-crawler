@@ -1,6 +1,40 @@
 import logging
 
 
+def fetchNewsList(parser, startIndex=0):
+    '''
+    뉴스를 언론사로부터 가져옵니다
+
+    Args:
+        parser: 뉴스사에 대한 파서
+        startIndex: 시작 인덱스. 최신 뉴스 몇개를 스킵할지를 결정합니다
+
+    Returns:
+        뉴스를 가져오는 generator
+    '''
+
+    page = 1
+    newsIndex = 0
+
+    # Skip previous newses
+    while newsIndex < startIndex:
+        pageNewses = parser.parseNewsList(page)
+        if len(pageNewses) + newsIndex <= startIndex:
+            newsIndex += len(pageNewses)
+        else:
+            for news in pageNewses:
+                newsIndex += 1
+                if newsIndex >= startIndex:
+                    yield news
+        page += 1
+
+    # Crawl news since
+    while True:
+        for news in parser.parseNewsList(page):
+            yield news
+        page += 1
+
+
 def crawlSince(parser, since):
     def newsEntryGenerator():
         page = 1
