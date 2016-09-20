@@ -4,6 +4,7 @@ from pyquery import PyQuery as pq
 from crawler import utils as ut
 
 class ParserHani:
+    provider = 'hani'
     def parseNews(self, url, providerNewsID):
         """
         url로부터 뉴스를 읽어온다

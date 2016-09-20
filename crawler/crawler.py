@@ -38,6 +38,9 @@ def fetchNewsList(parser, startIndex=0):
 def crawlSince(db, parser, since):
     try:
         for newsEntry in fetchNewsList(parser):
+            if db.hasNews(parser.provider, newsEntry['providerNewsID']):
+                continue  # Already have one
+
             try:
                 news = parser.parseNews(newsEntry['url'], newsEntry['providerNewsID'])
                 if news['publishedAt'] < since:

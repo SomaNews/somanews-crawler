@@ -6,6 +6,7 @@ from crawler import utils as ut
 
 
 class ParserChosun:
+    provider = 'chosun'
     def parseNews(self, url, providerNewsID):
         newshtml = ut.readURL(url, 'euc-kr')
         d = pq(newshtml)

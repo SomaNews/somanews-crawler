@@ -35,10 +35,20 @@ class TestCrawler(unittest.TestCase):
 
             self.assertEqual(news['title'], '뉴스 #%d' % (50 - i))
 
-    def test_crawler(self):
+    def test_crawlSince(self):
         db = dbconn.NewsDatabase()
         parser = DummyParser()
 
         crawler.crawlSince(db, parser, 40)
         self.assertEqual(db.getLatestNews()['title'], '뉴스 #50')
         self.assertEqual(db.getNewsCount(), 11)  # 50 ~ 40
+
+    def test_crawlSince_duptest(self):
+        db = dbconn.NewsDatabase()
+        parser = DummyParser()
+
+        crawler.crawlSince(db, parser, 40)
+        crawler.crawlSince(db, parser, 30)
+        self.assertEqual(db.getLatestNews()['title'], '뉴스 #50')
+        self.assertEqual(db.getNewsCount(), 21)  # 50 ~ 30
+
