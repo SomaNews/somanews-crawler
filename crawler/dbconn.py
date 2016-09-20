@@ -4,10 +4,8 @@ from pymongo import MongoClient
 class NewsDatabase:
     def __init__(self):
         self.client = MongoClient('localhost', 27017)
-        self.client.drop_database('test')
         self.db = self.client.get_database('test')
         self.articles = self.db.get_collection('articles')
-
 
     def close(self):
         self.client.close()
