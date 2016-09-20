@@ -5,6 +5,9 @@ from nose.tools import nottest
 
 class TestNewsDB(unittest.TestCase):
     def test_add_news(self):
+        '''
+        addNews가 정상 작동하는지 본다
+        '''
         parser = DummyParser()
         n1 = parser.parseNews('dummy://news1.html', 1)
 
@@ -13,6 +16,19 @@ class TestNewsDB(unittest.TestCase):
         should_be_n1 = db.getLatestNews()
         self.assertEqual(n1, should_be_n1)
 
+    def test_get_lastest_news(self):
+        '''
+        db.getLatestNews()가 제일 최신 뉴스를 반환하는지 테스트
+        '''
+        parser = DummyParser()
+        n1 = parser.parseNews('dummy://news1.html', 1)
+        n2 = parser.parseNews('dummy://news2.html', 2)
+
+        db = dbconn.NewsDatabase()
+        db.addMultipleNews([n1, n2])
+        self.assertEqual(db.getLatestNews()['publishedAt'], 2)
+
+
     def test_news_ordering(self):
         parser = DummyParser()
         n1 = parser.parseNews('dummy://news1.html', 1)
@@ -20,18 +36,19 @@ class TestNewsDB(unittest.TestCase):
 
         # Try in original order
         db = dbconn.NewsDatabase()
-        db.addMultipleNews([n1, n2])
+        db.addNews(n1)
+        db.addNews(n2)
         n = db.getLatestNews()
         self.assertEqual(n['title'], n2['title'])
         db.close()
 
         # Try in reverse order
         db = dbconn.NewsDatabase()
-        db.addMultipleNews([n2, n1])
+        db.addNews(n2)
+        db.addNews(n1)
         n = db.getLatestNews()
         self.assertEqual(n['title'], n2['title'])
         db.close()
-
 
     def test_duplicate_filtering(self):
         parser = DummyParser()
@@ -40,12 +57,5 @@ class TestNewsDB(unittest.TestCase):
         db = dbconn.NewsDatabase()
         db.addNews(n1)
         self.assertRaises(ValueError, db.addNews, n1)
-
-    @nottest
-    def test_get_lastest_news(self):
-        db = dbconn.NewsDatabase()
-        db.addNews({'source': 'chosun', 'cTime': 1, 'newsID': 1, 'title': '뉴스1'})
-        db.addNews({'source': 'chosun', 'cTime': 2, 'newsID': 2, 'title': '뉴스2'})
-        self.assertEqual(db.getLatestNewsTime(), 2)
 
 
