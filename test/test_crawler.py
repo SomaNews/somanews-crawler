@@ -43,7 +43,7 @@ class TestCrawler(unittest.TestCase):
         self.assertEqual(db.getLatestNews()['title'], '뉴스 #50')
         self.assertEqual(db.getNewsCount(), 11)  # 50 ~ 40
 
-    def test_crawlSince_duptest(self):
+    def test_crawlSince_skip_duplicates(self):
         db = dbconn.NewsDatabase()
         parser = DummyParser()
 
