@@ -6,7 +6,7 @@ from nose.tools import nottest
 class TestNewsDB(unittest.TestCase):
     def test_add_news(self):
         parser = DummyParser()
-        n1 = parser.parseNews('dummy://news1.html')
+        n1 = parser.parseNews('dummy://news1.html', 1)
 
         db = dbconn.NewsDatabase()
         db.addNews(n1)
@@ -15,8 +15,8 @@ class TestNewsDB(unittest.TestCase):
 
     def test_news_ordering(self):
         parser = DummyParser()
-        n1 = parser.parseNews('dummy://news1.html')
-        n2 = parser.parseNews('dummy://news2.html')
+        n1 = parser.parseNews('dummy://news1.html', 1)
+        n2 = parser.parseNews('dummy://news2.html', 2)
 
         # Try in original order
         db = dbconn.NewsDatabase()
@@ -33,9 +33,10 @@ class TestNewsDB(unittest.TestCase):
         db.close()
 
 
-    @nottest
     def test_duplicate_filtering(self):
-        n1 = {'source': 'chosun', 'cTime': 1, 'newsID': 1, 'title': '뉴스1'}
+        parser = DummyParser()
+        n1 = parser.parseNews('dummy://news1.html', 1)
+
         db = dbconn.NewsDatabase()
         db.addNews(n1)
         self.assertRaises(ValueError, db.addNews, n1)

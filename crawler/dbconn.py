@@ -22,11 +22,15 @@ class NewsDatabase:
     def isValidNews(self, news):
         return all(k in news for k in [
             'title', 'author', 'link', 'provider', 'category',
-            'description', 'publishedAt', 'content'
+            'description', 'publishedAt', 'content', 'providerNewsID'
         ])
 
     def addNews(self, news):
         assert self.isValidNews(news)
+
+        if self.hasNews(news['provider'], news['providerNewsID']):
+            raise ValueError('Duplicate news')
+
         # insert_one 함수에서 인자로 들어온 dict를 변경합니다 (_id 추가)
         # 이를 방지하기 위해 dict()를 이용해 복사본을 insert하도록 합니다.
         self.articles.insert_one(dict(news))
