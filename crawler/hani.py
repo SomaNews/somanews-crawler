@@ -4,7 +4,7 @@ from pyquery import PyQuery as pq
 from crawler import utils as ut
 
 class ParserHani:
-    def parseNews(self, url):
+    def parseNews(self, url, providerNewsID):
         """
         url로부터 뉴스를 읽어온다
 
@@ -46,7 +46,8 @@ class ParserHani:
             'description': description,
             'publishedAt': publishedAt,
             'content': content,
-            'imageURL': d('.image-area .imageC img').attr('src') or ''
+            'imageURL': d('.image-area .imageC img').attr('src') or '',
+            'providerNewsID': providerNewsID,
         }
 
 

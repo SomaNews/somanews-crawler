@@ -17,7 +17,7 @@ class TestCrawler(unittest.TestCase):
         self.assertEqual(newsList[0]['providerNewsID'], 1)
         self.assertEqual(newsList[-1]['title'], '뉴스 #10')
 
-        news1 = parser.parseNews('dummy://news1.html')
+        news1 = parser.parseNews('dummy://news1.html', 1)
         self.assertEqual(news1['title'], '뉴스 #1')
         self.assertEqual(news1['publishedAt'], 1)
 

@@ -4,7 +4,7 @@ from pyquery import PyQuery as pq
 from crawler import utils as ut
 
 class ParserDonga:
-    def parseNews(self, url):
+    def parseNews(self, url, providerNewsID):
         """
         url로부터 뉴스를 읽어온다
 
@@ -56,6 +56,7 @@ class ParserDonga:
             'publishedAt': publishedAt,
             'imageURL': d('.articlePhotoC img').attr('src') or '',
             'content': content,
+            'providerNewsID': providerNewsID,
         }
 
 

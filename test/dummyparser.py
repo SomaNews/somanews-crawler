@@ -1,7 +1,7 @@
 import re
 
 class DummyParser:
-    def parseNews(self, url):
+    def parseNews(self, url, providerNewsID):
         newsID = int(re.match(r"dummy://news(\d+).html", url).group(1))
         return {
             'title': '뉴스 #%d' % newsID,
@@ -12,7 +12,8 @@ class DummyParser:
             'description': '',
             'publishedAt': newsID,
             'content': 'qwertyuiop',
-            'imageURL': ''
+            'imageURL': '',
+            'providerNewsID': providerNewsID,
         }
 
 

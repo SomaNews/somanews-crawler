@@ -6,7 +6,7 @@ from crawler import utils as ut
 
 
 class ParserChosun:
-    def parseNews(self, url):
+    def parseNews(self, url, providerNewsID):
         newshtml = ut.readURL(url, 'euc-kr')
         d = pq(newshtml)
 
@@ -25,6 +25,7 @@ class ParserChosun:
             'publishedAt': publishedAt,
             'content': ut.textWithNewline(d('.par')),
             'imageURL': d('.news_imgbox img').attr('src') or '',
+            'providerNewsID': providerNewsID,
         }
 
     def parseNewsList(self, page):

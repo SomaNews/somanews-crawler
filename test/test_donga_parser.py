@@ -10,7 +10,7 @@ class TestDongaParser(unittest.TestCase):
         mock_urlReader.return_value = rawhtml
 
         parser = donga.ParserDonga()
-        news = parser.parseNews('http://news.donga.com/List/3/all/20160918/80317105/1')
+        news = parser.parseNews('http://news.donga.com/List/3/all/20160918/80317105/1', '20160918/80317105/1')
         self.assertEqual(news['title'], "예산 증액… 협회 통합… “룰 바꿔 기술씨름 되살려야”")
         self.assertEqual(news['author'], '홍정수기자')
         self.assertEqual(news['link'], 'http://news.donga.com/List/3/all/20160918/80317105/1')

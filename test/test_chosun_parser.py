@@ -11,7 +11,7 @@ class TestChosunCrawler(unittest.TestCase):
         mock_urlReader.return_value = rawhtml
 
         parser = chosun.ParserChosun()
-        news = parser.parseNews('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')
+        news = parser.parseNews('http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html', '2016091700921')
         self.assertEqual(news['title'], "정부, 北 핵실험 '방사성 제논' 이번에도 검출 실패")
         self.assertEqual(news['author'], '박건형 기자')
         self.assertEqual(news['link'], 'http://news.chosun.com/site/data/html_dir/2016/09/17/2016091700921.html')

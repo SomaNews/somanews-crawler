@@ -10,7 +10,7 @@ class TestHaniParser(unittest.TestCase):
         mock_urlReader.return_value = rawhtml
 
         parser = hani.ParserHani()
-        news = parser.parseNews('http://www.hani.co.kr/arti/society/labor/761484.html')
+        news = parser.parseNews('http://www.hani.co.kr/arti/society/labor/761484.html', '761484')
         self.assertEqual(news['title'], "“고용 최고, 실업 최저” 제주의 비결은?")
         self.assertEqual(news['author'], '이창곤 선임기자 goni@hani.co.kr')
         self.assertEqual(news['link'], 'http://www.hani.co.kr/arti/society/labor/761484.html')
