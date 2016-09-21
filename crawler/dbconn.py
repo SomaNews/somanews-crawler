@@ -1,9 +1,9 @@
 from pymongo import MongoClient
-
+import datetime
 
 class NewsDatabase:
-    def __init__(self, dbname):
-        self.client = MongoClient('localhost', 27017)
+    def __init__(self, server, dbname):
+        self.client = MongoClient(server)
         self.db = self.client.get_database(dbname)
         self.articles = self.db.get_collection('articles')
 
@@ -26,12 +26,18 @@ class NewsDatabase:
     def addNews(self, news):
         assert self.isValidNews(news)
 
-        if self.hasNews(news['provider'], news['providerNewsID']):
-            raise ValueError('Duplicate news')
-
         # insert_one 함수에서 인자로 들어온 dict를 변경합니다 (_id 추가)
         # 이를 방지하기 위해 dict()를 이용해 복사본을 insert하도록 합니다.
-        self.articles.insert_one(dict(news))
+        news = dict(news)
+        news['publishedAt'] = datetime.datetime.fromtimestamp(news['publishedAt'])
+        self.articles.update(
+            {
+                'provider': news['provider'],
+                'providerNewsID': news['providerNewsID']
+            },
+            dict(news),
+            upsert=True
+        )
 
     def addMultipleNews(self, newsList):
         for news in newsList:
@@ -41,6 +47,7 @@ class NewsDatabase:
     def getLatestNews(self):
         article = self.articles.find().sort('publishedAt', -1).limit(1).next()
         del article['_id']
+        article['publishedAt'] = article['publishedAt'].timestamp()
         return article
 
     def getNewsCount(self, provider=None):
