@@ -23,7 +23,8 @@ class ParserHani:
 
         # publishedAt
         timeStr = d('.date-time').text()
-        publishedAt = time.mktime(time.strptime(timeStr, "등록 : %Y-%m-%d %H:%M"))
+        timeStr = re.match(r'등록 : (\d+-\d+-\d+ \d+:\d+).*', timeStr).group(1)
+        publishedAt = time.mktime(time.strptime(timeStr, "%Y-%m-%d %H:%M"))
 
         # category
         categoryDiv = header.find('.category')

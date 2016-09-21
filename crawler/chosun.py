@@ -13,7 +13,7 @@ class ParserChosun:
 
         # publishedAt
         timeStr = d('.news_date').text()
-        timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+)', timeStr).group(1)
+        timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+).*', timeStr).group(1)
         publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M"))
 
         return {
