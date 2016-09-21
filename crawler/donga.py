@@ -62,7 +62,7 @@ class ParserDonga:
 
 
     def parseNewsList(self, page):
-        pageURL = 'http://news.donga.com/List?p=%d&ymd=&m=' % (16 * page - 15)
+        pageURL = 'http://news.donga.com/List?p=%d&ymd=&m=NP' % (16 * page - 15)
         pageHTML = ut.readURL(pageURL, 'utf-8')
         d = pq(pageHTML)
         newslist = []
