@@ -1,13 +1,12 @@
 from crawler import (
     crawler,
+    dbconn,
     chosun,
     donga,
     hani
 )
 
 import sys
-import json
-
 
 def main():
     if len(sys.argv) != 3:
@@ -24,8 +23,8 @@ def main():
     crawlStartTime = int(sys.argv[2])
 
     parser = parserClassDict[parserType]()
-    data = crawler.crawlSince(parser, crawlStartTime)
-    print(json.dumps(data))
+    db = dbconn.NewsDatabase('mongodb://ssomanews:ssomanews1029@ds021346.mlab.com:21346/somanews', 'somanews')
+    crawler.crawlSince(db, parser, crawlStartTime)
 
 
 if __name__ == '__main__':

@@ -1,4 +1,5 @@
 import logging
+import time
 
 
 def fetchNewsList(parser, startIndex=0):
@@ -36,22 +37,25 @@ def fetchNewsList(parser, startIndex=0):
 
 
 def crawlSince(db, parser, since):
-    try:
-        for newsEntry in fetchNewsList(parser):
-            if db.hasNews(parser.provider, newsEntry['providerNewsID']):
-                continue  # Already have one
+    with open('log.txt', 'a') as logFile:
+        try:
+            for newsEntry in fetchNewsList(parser):
+                try:
+                    news = parser.parseNews(newsEntry['url'], newsEntry['providerNewsID'])
+                    if news['publishedAt'] < since:
+                        break
 
-            try:
-                news = parser.parseNews(newsEntry['url'], newsEntry['providerNewsID'])
-                if news['publishedAt'] < since:
-                    break
-                logging.info('Crawling news "%s"' % news['title'])
-                db.addNews(news)
-            except:
-                # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
-                logging.exception('Error while crawling news "%s"' % newsEntry['title'])
+                    currentTime = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
+                    logString = '[%s] Crawling news "%s"' % (currentTime, news['title'])
+                    print(logString)
+                    logFile.write(logString + "\n")
 
-    except:
-        # 일단 지금까지 크롤링한거라도
-        logging.exception('Error in newsEntryGenerator')
+                    db.addNews(news)
+                except:
+                    # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
+                    logging.exception('Error while crawling news "%s"' % newsEntry['title'])
+
+        except:
+            # 일단 지금까지 크롤링한거라도
+            logging.exception('Error in newsEntryGenerator')
 
