@@ -36,10 +36,15 @@ class ParserChosun:
         newslist = []
         for item in d('dl.list_item').items():
             headline = item.find('dt')
+            title = headline.text().strip()
             url = headline.find('a').attr('href')
             newsID = re.match(r'.+/(\d+)\.html', url).group(1)
+
+            if '독자권익보호위원회' in title:
+                continue
+
             newslist.append({
-                'title': headline.text().strip(),
+                'title': title,
                 'url': url,
                 'providerNewsID': newsID,
             })

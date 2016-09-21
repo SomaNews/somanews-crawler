@@ -64,6 +64,11 @@ class ParserHani:
         for item in contents.find('div.list').items():
             titleItem = item.find('.article-title a')
             url = 'http://www.hani.co.kr' + titleItem.attr('href')
+
+            # 영문 뉴스는 파싱이 안되므로 생략
+            if 'english_edition' in url:
+                continue
+
             title = re.sub(r'\n *', ' ', titleItem.text())
             newsID = re.match(r'.+/(\d+).html', url).group(1)
             newslist.append({

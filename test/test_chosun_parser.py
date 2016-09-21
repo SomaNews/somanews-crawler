@@ -26,6 +26,16 @@ class TestChosunCrawler(unittest.TestCase):
         self.assert_(news['content'].startswith("정부가 지난 9일 북한이 실시한 5차 핵실험을"))
         self.assert_(news['content'].endswith("전면적으로 시스템을 개편해야 한다”고 말했다."))
 
+    @patch('crawler.utils.readURL')
+    def test_bug_parsenewsurl_datething(self, mock_urlReader):
+        rawhtml = open('testdata/chosun/chosun_article_2.html', 'r', encoding='euc-kr').read()
+        mock_urlReader.return_value = rawhtml
+        parser = chosun.ParserChosun()
+        self.assertRaises(
+            AttributeError,  # 독자권익보호위원회 류 문서는 파싱이 불가능하다
+            parser.parseNews,
+            'http://news.chosun.com/site/data/html_dir/2016/08/11/2016081103298.html', '2016081103298'
+        )
 
     @patch('crawler.utils.readURL')
     def test_newslist_reader(self, mock_urlReader):
