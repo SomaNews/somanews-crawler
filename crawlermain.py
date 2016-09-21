@@ -23,7 +23,8 @@ def main():
     crawlStartTime = int(sys.argv[2])
 
     parser = parserClassDict[parserType]()
-    db = dbconn.NewsDatabase('mongodb://ssomanews:ssomanews1029@ds021346.mlab.com:21346/somanews', 'somanews')
+    # db = dbconn.NewsDatabase('mongodb://ssomanews:ssomanews1029@ds021346.mlab.com:21346/somanews', 'somanews')
+    db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'test')
     crawler.crawlSince(db, parser, crawlStartTime)
 
 
