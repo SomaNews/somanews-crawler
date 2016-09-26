@@ -3,7 +3,8 @@ from crawler import (
     dbconn,
     chosun,
     donga,
-    hani
+    hani,
+    khan
 )
 
 import sys
@@ -17,6 +18,7 @@ def main():
         'chosun': chosun.ParserChosun,
         'donga': donga.ParserDonga,
         'hani': hani.ParserHani,
+        'khan': khan.ParserKhan
     }
 
     parserType = sys.argv[1]
@@ -24,7 +26,7 @@ def main():
 
     parser = parserClassDict[parserType]()
     # db = dbconn.NewsDatabase('mongodb://ssomanews:ssomanews1029@ds021346.mlab.com:21346/somanews', 'somanews')
-    db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'somanews')
+    db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'test')
     crawler.crawlSince(db, parser, crawlStartTime)
 
 
