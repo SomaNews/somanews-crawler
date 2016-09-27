@@ -16,27 +16,81 @@ class ParserKhan:
             뉴스 데이터를 가진 dict
 
         """
-        newshtml = ut.readURL(url, 'euc-kr')
+        newshtml, url = ut.readURLWithRedirect(url, 'euc-kr')
         d = pq(newshtml)
 
-        # publishedAt
-        timeStr = d('.byline').text()
-        timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+:\d+).*', timeStr).group(1)
-        publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M:%S"))
+        # category
+        mainCategory = d('.sec_title').text().strip()
+        subCategory = d('.navi_menu .on').text().strip()
+        category = "%s > %s" % (mainCategory, subCategory)
 
-        # content
-        return {
-            'title': d('#articleTtitle').text().strip(),
-            'author': d('.subject span.name').text().strip(),
-            'link': url,
-            'provider': 'khan',
-            'category': d('.navi_menu .on').text().strip(),
-            'description': '',
-            'publishedAt': publishedAt,
-            'content': ut.textWithNewline(d('.art_body')),
-            'imageURL': d('.art_photo img').attr('src') or '',
-            'providerNewsID': providerNewsID,
-        }
+        # 경제 관련
+        if url.startswith('http://biz.khan.co.kr/'):
+            # publishedAt
+            timeStr = d('.byline').text()
+            timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+:\d+).*', timeStr).group(1)
+            publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M:%S"))
+
+            # content
+            return {
+                'title': d('#articleTtitle').text().strip(),
+                'author': d('.subject span.name').text().strip(),
+                'link': url,
+                'provider': 'khan',
+                'category': category,
+                'description': '',
+                'publishedAt': publishedAt,
+                'content': ut.textWithNewline(d('.art_body')),
+                'imageURL': d('.art_photo img').attr('src') or '',
+                'providerNewsID': providerNewsID,
+            }
+
+        # 향이네
+        elif url.startswith('http://h2.khan.co.kr/'):
+            # publishedAt
+            timeStr = d('.art_date').text()
+            timeStr = re.match(r'입력 (\d+-\d+-\d+ \d+:\d+:\d+).*', timeStr).group(1)
+            publishedAt = time.mktime(time.strptime(timeStr, "%Y-%m-%d %H:%M:%S"))
+
+            # category
+            title = d('.art_tit').text().strip()
+            category = '향이네 > %s' % (
+                re.match('\[(.+?)\].+', title).group(1)
+            )
+            # content
+            return {
+                'title': title,
+                'author': d('.art_author').text().strip(),
+                'link': url,
+                'provider': 'khan',
+                'category': category,
+                'description': '',
+                'publishedAt': publishedAt,
+                'content': ut.textWithNewline(d('.art_text')),
+                'imageURL': d('.art_thumb img').attr('src') or '',
+                'providerNewsID': providerNewsID,
+            }
+
+        # 나머지
+        else:
+            # publishedAt
+            timeStr = d('.byline').text()
+            timeStr = re.match(r'입력 : (\d+.\d+.\d+ \d+:\d+:\d+).*', timeStr).group(1)
+            publishedAt = time.mktime(time.strptime(timeStr, "%Y.%m.%d %H:%M:%S"))
+
+            # content
+            return {
+                'title': d('#article_title').text().strip(),
+                'author': d('.subject span.name').text().strip(),
+                'link': url,
+                'provider': 'khan',
+                'category': category,
+                'description': ut.textWithNewline(d('.art_subtit')),
+                'publishedAt': publishedAt,
+                'content': ut.textWithNewline(d('.art_body')),
+                'imageURL': d('.art_photo img').attr('src') or '',
+                'providerNewsID': providerNewsID,
+            }
 
 
     def parseNewsList(self, page):
