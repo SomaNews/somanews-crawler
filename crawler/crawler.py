@@ -57,6 +57,8 @@ def crawlSince(db, parser, since):
                     logging.exception('Error while crawling news "%s"' % newsEntry['title'])
                     if isinstance(e, KeyboardInterrupt):
                         raise
+                    newsEntry['provider'] = parser.provider
+                    db.addFailedCrawl(newsEntry)
 
         except Exception as e:
             # 일단 지금까지 크롤링한거라도

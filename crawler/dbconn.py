@@ -6,6 +6,7 @@ class NewsDatabase:
         self.client = MongoClient(server)
         self.db = self.client.get_database(dbname)
         self.articles = self.db.get_collection('articles')
+        self.failedCrawls = self.db.get_collection('failedCrawls')
 
     def close(self):
         self.client.close()
@@ -38,6 +39,14 @@ class NewsDatabase:
             dict(news),
             upsert=True
         )
+
+    def addFailedCrawl(self, entry):
+        entry = dict(entry)
+        self.failedCrawls.update({
+            'provider': entry['provider'],
+            'title': entry['title'],
+            'url': entry['url'],
+        })
 
     def addMultipleNews(self, newsList):
         for news in newsList:
