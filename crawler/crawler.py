@@ -52,11 +52,15 @@ def crawlSince(db, parser, since):
                     logFile.write(logString + "\n")
 
                     db.addNews(news)
-                except:
+                except Exception as e:
                     # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
                     logging.exception('Error while crawling news "%s"' % newsEntry['title'])
+                    if isinstance(e, KeyboardInterrupt):
+                        raise
 
-        except:
+        except Exception as e:
             # 일단 지금까지 크롤링한거라도
             logging.exception('Error in newsEntryGenerator')
+            if isinstance(e, KeyboardInterrupt):
+                raise
 
