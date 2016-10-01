@@ -1,5 +1,6 @@
 import urllib
 import lxml
+import time
 
 def readURL(url, encoding):
     """URL에 따라 파일을 읽는다.
@@ -11,7 +12,7 @@ def readURL(url, encoding):
     Returns:
         str -- 읽은 내용
     """
-    time.sleep(1)  # For reduced speed
+    time.sleep(0.5)  # For reduced speed
     return urllib.request.urlopen(url).read().decode(encoding)
 
 
