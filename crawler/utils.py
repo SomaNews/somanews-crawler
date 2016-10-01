@@ -11,6 +11,7 @@ def readURL(url, encoding):
     Returns:
         str -- 읽은 내용
     """
+    time.sleep(1)  # For reduced speed
     return urllib.request.urlopen(url).read().decode(encoding)
 
 
