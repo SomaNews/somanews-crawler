@@ -25,6 +25,7 @@ class TestNewsDB(unittest.TestCase):
         n2 = parser.parseNews('dummy://news2.html', 2)
 
         db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'test')
+        self.assertEqual(db.getLatestNews(), None)
         db.addNews(n1)
         db.addNews(n2)
         self.assertEqual(db.getLatestNews()['publishedAt'], 2)

@@ -53,11 +53,18 @@ class NewsDatabase:
             assert self.isValidNews(news)
         self.articles.insert_many(newsList)
 
-    def getLatestNews(self):
-        article = self.articles.find().sort('publishedAt', -1).limit(1).next()
-        del article['_id']
-        article['publishedAt'] = article['publishedAt'].timestamp()
-        return article
+    def getLatestNews(self, provider=None):
+        if provider:
+            cond = {'provider': provider}
+        else:
+            cond = {}
+        try:
+            article = self.articles.find(cond).sort('publishedAt', -1).limit(1).next()
+            del article['_id']
+            article['publishedAt'] = article['publishedAt'].timestamp()
+            return article
+        except StopIteration:
+            return None
 
     def getNewsCount(self, provider=None):
         if not provider:
