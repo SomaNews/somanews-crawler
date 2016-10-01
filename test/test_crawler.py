@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from crawler import crawler, dbconn
 from pymongo import MongoClient
 from test.dummyparser import DummyParser
@@ -52,3 +53,22 @@ class TestCrawler(unittest.TestCase):
         self.assertEqual(db.getLatestNews()['title'], '뉴스 #50')
         self.assertEqual(db.getNewsCount(), 21)  # 50 ~ 30
 
+    def test_addFailedCrawl(self):
+        db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'test')
+        db.addFailedCrawl({
+            'provider': 'dummy',
+            'title': 'TestTitle',
+            'url': 'TestURL',
+        })
+        self.assertEqual(db.getFailedCrawlCount(), 1)
+
+    @patch('test.dummyparser.DummyParser.parseNews')
+    def test_crawlSince_addFailedCrawl(self, mock_parseNews):
+        mock_parseNews.side_effect = ValueError()
+
+        db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'test')
+        parser = DummyParser()
+        self.assertRaises(ValueError, parser.parseNews, 'dummy://news1.html', 1)
+
+        crawler.crawlSince(db, parser, 0)
+        self.assertEqual(db.getFailedCrawlCount(), 30)  # Maximum 30 failed crawl allowed per provider

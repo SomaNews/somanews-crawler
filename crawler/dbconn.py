@@ -42,7 +42,7 @@ class NewsDatabase:
 
     def addFailedCrawl(self, entry):
         entry = dict(entry)
-        self.failedCrawls.update({
+        self.failedCrawls.insert({
             'provider': entry['provider'],
             'title': entry['title'],
             'url': entry['url'],
@@ -65,3 +65,5 @@ class NewsDatabase:
         else:
             return self.articles.count({'provider': provider})
 
+    def getFailedCrawlCount(self):
+        return self.failedCrawls.count()

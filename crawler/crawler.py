@@ -20,6 +20,8 @@ def fetchNewsList(parser, startIndex=0):
     # Skip previous newses
     while newsIndex < startIndex:
         pageNewses = parser.parseNewsList(page)
+        if not pageNewses:  # News ended
+            return
         if len(pageNewses) + newsIndex <= startIndex:
             newsIndex += len(pageNewses)
         else:
@@ -31,12 +33,16 @@ def fetchNewsList(parser, startIndex=0):
 
     # Crawl news since
     while True:
-        for news in parser.parseNewsList(page):
+        pageNewses = parser.parseNewsList(page)
+        if not pageNewses:  # News ended
+            break
+        for news in pageNewses:
             yield news
         page += 1
 
 
 def crawlSince(db, parser, since):
+    failedCrawls = 0
     with open('log.txt', 'a') as logFile:
         try:
             for newsEntry in fetchNewsList(parser):
@@ -50,15 +56,21 @@ def crawlSince(db, parser, since):
                     logString = '[%s] [Written at %s] Crawling news "%s"' % (currentTime, publishedAt, news['title'])
                     print(logString)
                     logFile.write(logString + "\n")
-
                     db.addNews(news)
+
                 except Exception as e:
                     # 뭐든지 오류가 나면 나중에 디버깅을 하고 일단 씹는다.
-                    logging.exception('Error while crawling news "%s"' % newsEntry['title'])
+                    print('Error while crawling news "%s"' % newsEntry['title'])
                     if isinstance(e, KeyboardInterrupt):
                         raise
+
                     newsEntry['provider'] = parser.provider
                     db.addFailedCrawl(newsEntry)
+
+                    failedCrawls += 1
+                    if failedCrawls == 30:
+                        print('30 failed crawls. Aborting')
+                        return
 
         except Exception as e:
             # 일단 지금까지 크롤링한거라도
