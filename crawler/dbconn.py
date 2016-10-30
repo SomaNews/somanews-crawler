@@ -31,10 +31,12 @@ class NewsDatabase:
         # 이를 방지하기 위해 dict()를 이용해 복사본을 insert하도록 합니다.
         news = dict(news)
         news['publishedAt'] = datetime.datetime.fromtimestamp(news['publishedAt'])
+
+        # articleID를 추가합니다.
+        news['_id'] = news['provider'] + '_' + news['providerNewsID']
         self.articles.update(
             {
-                'provider': news['provider'],
-                'providerNewsID': news['providerNewsID']
+                '_id': news['_id'],
             },
             dict(news),
             upsert=True
