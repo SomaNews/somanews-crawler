@@ -17,7 +17,7 @@ def main():
         'khan': khan.ParserKhan
     }
 
-    db = dbconn.NewsDatabase('mongodb://localhost:27017/', 'somanews')
+    db = dbconn.NewsDatabase('mongodb://ssomanews:ssomanews1029@localhost:27017/somanews', 'somanews')
 
     for provider, parserClass in parserClassDict.items():
         print('Crawling from provider %s...' % provider)
