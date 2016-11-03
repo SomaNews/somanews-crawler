@@ -33,7 +33,7 @@ class NewsDatabase:
         news['publishedAt'] = datetime.datetime.fromtimestamp(news['publishedAt'])
 
         # articleID를 추가합니다.
-        news['_id'] = news['provider'] + '_' + news['providerNewsID']
+        news['_id'] = news['provider'] + '_' + str(news['providerNewsID'])
         self.articles.update(
             {
                 '_id': news['_id'],
