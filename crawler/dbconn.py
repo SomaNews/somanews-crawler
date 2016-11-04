@@ -5,14 +5,14 @@ class NewsDatabase:
     def __init__(self, server, dbname):
         self.client = MongoClient(server)
         self.db = self.client.get_database(dbname)
-        self.articles = self.db.get_collection('articles')
+        self.crawledArticles = self.db.get_collection('crawledArticles')
         self.failedCrawls = self.db.get_collection('failedCrawls')
 
     def close(self):
         self.client.close()
 
     def hasNews(self, provider, providerNewsID):
-        article = self.articles.find_one({
+        article = self.crawledArticles.find_one({
             'provider': provider,
             'providerNewsID': providerNewsID
         })
@@ -34,7 +34,7 @@ class NewsDatabase:
 
         # articleID를 추가합니다.
         news['_id'] = news['provider'] + '_' + str(news['providerNewsID'])
-        self.articles.update(
+        self.crawledArticles.update(
             {
                 '_id': news['_id'],
             },
@@ -53,7 +53,7 @@ class NewsDatabase:
     def addMultipleNews(self, newsList):
         for news in newsList:
             assert self.isValidNews(news)
-        self.articles.insert_many(newsList)
+        self.crawledArticles.insert_many(newsList)
 
     def getLatestNews(self, provider=None):
         if provider:
@@ -61,7 +61,7 @@ class NewsDatabase:
         else:
             cond = {}
         try:
-            article = self.articles.find(cond).sort('publishedAt', -1).limit(1).next()
+            article = self.crawledArticles.find(cond).sort('publishedAt', -1).limit(1).next()
             del article['_id']
             article['publishedAt'] = article['publishedAt'].timestamp()
             return article
@@ -70,9 +70,9 @@ class NewsDatabase:
 
     def getNewsCount(self, provider=None):
         if not provider:
-            return self.articles.count()
+            return self.crawledArticles.count()
         else:
-            return self.articles.count({'provider': provider})
+            return self.crawledArticles.count({'provider': provider})
 
     def getFailedCrawlCount(self):
         return self.failedCrawls.count()
